@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1> Admin Dashboard </h1>
+<h1> Student Dashboard </h1>
     
 
 <button> <a href="{{route('logout')}}" > Logout </button>

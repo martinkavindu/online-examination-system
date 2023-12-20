@@ -32,7 +32,17 @@ Route::post('/login',[AuthController::class,'userLogin'])->name('userlogin');
 
 Route::get('/logout',[AuthController::class,'Logout'])->name('logout');
 
+Route::group(['middleware'=>['web','checkAdmin']],function(){
+
+    Route::post('/admin/dashboard',[AuthController::class,'AdminDashboard'])->name('admindashboard');
+
+});
+
+Route::group(['middleware'=>['web','checkStudent']],function(){
+
 Route::get('/dashboard',[AuthController::class,'Dashboard'])->name('dashboard');
-Route::post('/admin/dashboard',[AuthController::class,'AdminDashboard'])->name('admindashboard');
+
+});
+
 
 
