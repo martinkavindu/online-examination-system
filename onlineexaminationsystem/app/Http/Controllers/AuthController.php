@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Mail;
+use App\Models\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Str;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Carbon;
 
 class AuthController extends Controller
 {
@@ -95,5 +100,18 @@ class AuthController extends Controller
 
     public function ForgetPassword(){
       return view('forgotpassword');
+    }
+
+    public function ForgotPassword (Request $request){
+
+      try {
+ 
+        $user = User::where('email',$request->email)->get();
+      } catch (\Exception $e) {
+        
+        return back()->with('error',$e->getMessage());
+      }
+
+
     }
 }
