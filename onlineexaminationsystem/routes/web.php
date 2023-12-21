@@ -33,7 +33,7 @@ Route::post('/login',[AuthController::class,'userLogin'])->name('userlogin');
 Route::get('/logout',[AuthController::class,'Logout'])->name('logout');
 
 Route::get('/forgetpassword',[AuthController::class,'ForgetPassword'])->name('forgetpassword');
-Route::get('/forgotpassword',[AuthController::class,'ForgotPassword'])->name('forgotpassword');
+Route::post('/forgotpassword',[AuthController::class,'ForgotPassword'])->name('forgotpassword');
 
 
 Route::group(['middleware'=>['web','checkAdmin']],function(){

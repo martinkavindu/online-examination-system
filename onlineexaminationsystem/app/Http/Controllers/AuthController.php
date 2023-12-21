@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Str;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Carbon;
 
@@ -102,16 +102,45 @@ class AuthController extends Controller
       return view('forgotpassword');
     }
 
-    public function ForgotPassword (Request $request){
-
-      try {
- 
-        $user = User::where('email',$request->email)->get();
-      } catch (\Exception $e) {
-        
-        return back()->with('error',$e->getMessage());
-      }
-
-
+    public function ForgotPassword(Request $request)
+    {
+        try {
+            $user = User::where('email', $request->email)->get();
+    
+            if (count($user) > 0) {
+                $token = Str::random(40);
+                $domain = URL::to('/');
+                $url = $domain.'/reset-password?token='.$token;
+    
+                $data['url'] = $url;
+                $data['email'] = $request->email;
+                $data['title'] = 'password reset';
+                $data['body'] = 'please click on link below to reset your password';
+    
+                $dateTime = now(); // Define $dateTime before using it
+    
+                Mail::send('forgetPasswordMail', ['data' => $data], function ($message) use ($data, $request, $dateTime) {
+                    $message->to($data['email'])->subject($data['title']);
+    
+                    PasswordReset::updateOrCreate(
+                        [
+                            'email' => $request->email,
+                        ],
+                        [
+                            'email' => $request->email,
+                            'token' => $token,
+                            'created_at' => $dateTime,
+                        ]
+                    );
+    
+                    return back()->with('success', 'Please check your email to reset your password');
+                });
+            } else {
+                return back()->with('error', 'Email does not exist');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
+    
 }
