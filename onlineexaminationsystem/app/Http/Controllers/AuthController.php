@@ -11,6 +11,15 @@ class AuthController extends Controller
 {
   public  function loadingRegister(){
 
+    if(Auth::user() && Auth::user()->is_admin == 1){
+      return redirect('/admin/dashboard');
+    } 
+    elseif(Auth::user() && Auth::user()->is_admin == 0) {
+      
+      return redirect('/dashboard');
+
+    }
+
     return view('register');
   }
 
@@ -36,6 +45,15 @@ class AuthController extends Controller
   }
 
   public function loadingLogin(){
+
+    if(Auth::user() && Auth::user()->is_admin == 1){
+      return redirect('/admin/dashboard');
+    } 
+    elseif(Auth::user() && Auth::user()->is_admin == 0) {
+      
+      return redirect('/dashboard');
+
+    }
 
     return view('login');
   }
