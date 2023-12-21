@@ -34,7 +34,7 @@
       </div>
       <div class="remember-forgot">
         <label><input type="checkbox">Remember Me</label>
-        <a href="#">Forgot Password</a>
+        <a href="{{route('forgetpassword')}}">Forgot Password</a>
       </div>
       <input type="submit" value="Login" class="btn">
       <div class="register-link">
