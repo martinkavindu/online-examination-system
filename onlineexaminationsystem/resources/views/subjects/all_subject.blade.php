@@ -30,8 +30,8 @@
                 <th>{{ $loop->iteration }}</th>
                 <td>{{$item->subject_name}}</td>
                 <td>
-                <a href="" title="Edit Subject"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></a>
-                 <a onclick="" title=" Delete Course"><button class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+                <a href="" title="Edit Subject"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> Update</button></a>
+                 <a onclick="confirmation(event)" title=" Delete Course"><button class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
 
                 </td>
               </tr>

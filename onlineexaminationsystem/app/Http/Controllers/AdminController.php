@@ -26,7 +26,7 @@ class AdminController extends Controller
           
         ]);
 
-        return back()->with('message','subject created successfully'); 
+        return redirect()->route('allsubject')->with('message','subject created successfully'); 
 
 
     }
