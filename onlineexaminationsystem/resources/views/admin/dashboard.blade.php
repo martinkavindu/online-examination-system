@@ -35,7 +35,7 @@
                 
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages"
+                        <a href="{{route('allsubject')}}" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages"
                             aria-expanded="false" aria-controls="pages">
                             <i class="fa-regular fa-file-lines pe-2"></i>
                        Subjects
@@ -46,6 +46,22 @@
                             </li>
                             <li class="sidebar-item">
                                 <a href="{{route('addsubject')}}" class="sidebar-link">Add Subject</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages"
+                            aria-expanded="false" aria-controls="pages">
+                            <i class="fa fa-pencil-square" aria-hidden="true"></i>  Exam
+
+                        </a>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="" class="sidebar-link">All </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="" class="sidebar-link">Add </a>
                             </li>
                            
                         </ul>

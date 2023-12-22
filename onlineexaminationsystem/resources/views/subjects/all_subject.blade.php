@@ -18,7 +18,8 @@
               <tr>
                 <th >No</th>
                 <th>Subject name</th>
-                <th>Action</th>
+                <th>Edit</th>
+                <th> Delete</th>
 
               </tr>
             </thead>
@@ -30,9 +31,10 @@
                 <th>{{ $loop->iteration }}</th>
                 <td>{{$item->subject_name}}</td>
                 <td>
-                <a href="{{route('editsubject',$item->id)}}" title="Edit Subject"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> Update</button></a>
-                 <a href="{{route('deletesubject',$item->id)}}" onclick="confirmation(event)" title=" Delete subject"><button class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+                <a href="{{route('editsubject',$item->id)}}" title="Edit Subject"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></a>
 
+                </td>
+                <td>  <a href="{{route('deletesubject',$item->id)}}" onclick="confirmation(event)" title=" Delete subject"><button class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
                 </td>
               </tr>
               @endforeach
