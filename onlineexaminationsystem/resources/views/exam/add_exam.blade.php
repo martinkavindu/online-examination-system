@@ -31,7 +31,7 @@
   </div>
   <div class="mb-3">
 
-    <input type="number" class="form-control " id="attempt" name="attempt" placeholder="Exam attempts" required>
+    <input type="number" min="1" class="form-control " id="attempt" name="attempt" placeholder="Exam attempts" required>
   </div>
   <button type="submit" class="btn btn-primary">Save</button>
     </form>
