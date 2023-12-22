@@ -47,9 +47,7 @@
                             <li class="sidebar-item">
                                 <a href="{{route('addsubject')}}" class="sidebar-link">Add Subject</a>
                             </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Delete</a>
-                            </li>
+                           
                         </ul>
                     </li>
 

@@ -46,6 +46,9 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::post('/store/subject',[AdminController::class,'StoreSubject'])->name('storesubject');
 
     Route::get('/all/subject',[AdminController::class,'AllSubject'])->name('allsubject');
+    Route::get('/edit/subject/{id}',[AdminController::class,'EditSubject'])->name('editsubject');
+    Route::post('/update/subject/{id}',[AdminController::class,'UpdateSubject'])->name('updatesubject');
+    Route::get('/delete/subject/{id}',[AdminController::class,'DeleteSubject'])->name('deletesubject');
 
 });
 

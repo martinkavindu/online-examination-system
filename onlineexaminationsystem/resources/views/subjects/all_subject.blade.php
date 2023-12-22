@@ -8,7 +8,7 @@
         <h2>Subjects</h2>
     </div>
     <div class="card-body">
-        <a href="" class="btn btn-success btn-sm" title="Add New course">
+    <a href="{{route('addsubject')}}" class="btn btn-success btn-sm" title="Add New course">
             <i class="fa fa-plus" aria-hidden="true"></i> Add New
         </a>
         <div class="mt-5">
@@ -30,8 +30,8 @@
                 <th>{{ $loop->iteration }}</th>
                 <td>{{$item->subject_name}}</td>
                 <td>
-                <a href="" title="Edit Subject"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> Update</button></a>
-                 <a onclick="confirmation(event)" title=" Delete Course"><button class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+                <a href="{{route('editsubject',$item->id)}}" title="Edit Subject"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> Update</button></a>
+                 <a href="{{route('deletesubject',$item->id)}}" onclick="confirmation(event)" title=" Delete subject"><button class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
 
                 </td>
               </tr>
