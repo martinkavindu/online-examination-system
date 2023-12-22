@@ -19,64 +19,47 @@
         <aside id="sidebar">
             <div class="h-100">
                 <div class="sidebar-logo">
-                    <a href="#">CodzSword</a>
+                    <a href="#">OES</a>
+                    <i class="fa fa-graduation-cap " aria-hidden="true"></i>
                 </div>
                 <!-- Sidebar Navigation -->
                 <ul class="sidebar-nav">
                     <li class="sidebar-header">
                         Tools & Components
                     </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i>
-                            Profile
-                        </a>
+                
                     </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages"
                             aria-expanded="false" aria-controls="pages">
                             <i class="fa-regular fa-file-lines pe-2"></i>
-                            Pages
+                       Subjects
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Analytics</a>
+                                <a href="#" class="sidebar-link">All subjects</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Ecommerce</a>
+                                <a href="{{route('addsubject')}}" class="sidebar-link">Add Subject</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Crypto</a>
+                                <a href="#" class="sidebar-link">Delete</a>
                             </li>
                         </ul>
                     </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard"
-                            aria-expanded="false" aria-controls="dashboard">
-                            <i class="fa-solid fa-sliders pe-2"></i>
-                            Dashboard
-                        </a>
-                        <ul id="dashboard" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Dashboard Analytics</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Dashboard Ecommerce</a>
-                            </li>
-                        </ul>
-                    </li>
+
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#auth"
                             aria-expanded="false" aria-controls="auth">
                             <i class="fa-regular fa-user pe-2"></i>
-                            Auth
+                          Profile
                         </a>
                         <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Login</a>
+                                <a href="#" class="sidebar-link">update Profile</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Register</a>
+                                <a href="{{route('logout')}}" class="sidebar-link">Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -120,7 +103,9 @@
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                     <div class="mb-3">
+
                      @yield('content')
+
                     </div>
                 </div>
             </main>
@@ -130,9 +115,36 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="{{asset('js/script.js')}}"></script>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    @if (Session::has('message'))
+  <script>
+    toastr.options = {
+      'progressBar': true,
+      'closeButton': true,
+      'positionClass': 'toast-top-right', 
+      'showDuration': '300',
+      'hideDuration': '1000',
+      'timeOut': '5000',
+      'extendedTimeOut': '1000',
+      'showEasing': 'swing',
+      'hideEasing': 'linear',
+      'showMethod': 'fadeIn',
+      'hideMethod': 'fadeOut',
+      'onShown': function () {
+       
+        $('.toast').css('background-color', '#28a745'); 
+        $('.toast').css('color', '#fff'); 
+      }
+    };
+    toastr.success("{{ Session::get('message') }}", 'Success!', { timeOut: 3000 });
+  </script>
+@endif
 </body>
 
 </html>
     
 
-{{--<button> <a href="{{route('logout')}}" > Logout </button>--}}

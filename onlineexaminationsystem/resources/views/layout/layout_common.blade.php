@@ -22,7 +22,7 @@ body{
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url({{asset('upload/bg.jpg')}}) no-repeat;
+  background: url({{asset('upload/backg.jpg')}}) no-repeat;
   background-size: cover;
   background-position: center;
 }

@@ -71,6 +71,10 @@ li {
     font-size: 1.25rem;
     font-weight: 600;
 }
+.sidebar-logo i{
+    color: #FFF;
+    margin-left: 5px;
+}
 
 .sidebar-nav {
     padding: 0;
