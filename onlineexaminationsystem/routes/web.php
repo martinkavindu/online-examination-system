@@ -16,7 +16,7 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Route::get('/register',[AuthController::class,'loadingRegister'])->name('register');
@@ -50,6 +50,14 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::post('/update/subject/{id}',[AdminController::class,'UpdateSubject'])->name('updatesubject');
     Route::get('/delete/subject/{id}',[AdminController::class,'DeleteSubject'])->name('deletesubject');
 
+    //exams routes
+
+    Route::get('/all/exams',[AdminController::class,'AllExam'])->name('allexam');
+    Route::get('/add/exam',[AdminController::class,'AddExam'])->name('addexam');
+    Route::post('/store/exam',[AdminController::class,'StoreExam'])->name('storeexam');
+
+    
+    
 });
 
 Route::group(['middleware'=>['web','checkStudent']],function(){

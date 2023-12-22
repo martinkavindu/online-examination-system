@@ -51,14 +51,14 @@
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages"
+                        <a href="{{route('allexam')}}" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages"
                             aria-expanded="false" aria-controls="pages">
                             <i class="fa fa-pencil-square" aria-hidden="true"></i>  Exam
 
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="" class="sidebar-link">All </a>
+                                <a href="{{route('allexam')}}" class="sidebar-link">All </a>
                             </li>
                             <li class="sidebar-item">
                                 <a href="" class="sidebar-link">Add </a>
