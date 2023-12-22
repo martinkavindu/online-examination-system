@@ -30,4 +30,12 @@ class AdminController extends Controller
 
 
     }
+
+    public function AllSubject (){
+
+        $subjects = Subjects::all();
+
+        return view('subjects.all_subject',compact('subjects'));
+
+    }
 }

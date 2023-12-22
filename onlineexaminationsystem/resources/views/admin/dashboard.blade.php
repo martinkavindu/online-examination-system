@@ -37,7 +37,7 @@
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">All subjects</a>
+                                <a href="{{route('allsubject')}}" class="sidebar-link">All subjects</a>
                             </li>
                             <li class="sidebar-item">
                                 <a href="{{route('addsubject')}}" class="sidebar-link">Add Subject</a>
