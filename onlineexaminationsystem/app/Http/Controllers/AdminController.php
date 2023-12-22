@@ -83,15 +83,48 @@ class AdminController extends Controller
 
         return view('exam.add_exam',compact('subjects'));
     }
-
-    public function StoreExam (Request $request) {
-         exam::insert([
-            'exam_name '=>$request->exam_name,
-            'subject_name '=>$request->subject_name,
-            'date'=>$request->date,
-            "time"=>$request->time
-
-         ]);
-         return redirect()->route('allexam')->with('message', 'exam added successfully');
+    public function StoreExam(Request $request)
+    {
+        exam::insert([
+            'exam_name' => $request->exam_name,
+            'subject_name' => $request->subject_name,
+            'date' => $request->date,
+            'time' => $request->time,
+            'attempt' => $request->attempt
+        ]);
+    
+        return redirect()->route('allexam')->with('message', 'Exam added successfully');
     }
+
+    public function EditExam ($id){
+
+    $exams =  exam::findOrFail($id);
+
+return view('exam.edit_exam',compact('exams'));
+
+    }
+    public function UpdateExam (Request $request, $id){
+
+        $eid = $request->id;
+         
+        exam::findOrFail($eid)->update([
+          
+            'exam_name' => $request->exam_name,
+            'subject_name' => $request->subject_name,
+            'date' => $request->date,
+            'time' => $request->time,
+            'attempt' => $request->attempt
+        ]);
+
+        return redirect()->route('allexam')->with('message','exam updated successfully');
+    }
+
+    
+    public function DeleteExam ($id) {
+
+        exam::findOrFail($id)->delete();
+
+        return back()->with('message',"exam deleted successfully");
+    }
+    
 }

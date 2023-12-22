@@ -21,6 +21,7 @@
                 <th> Subject name </th>
                 <th>Date</th>
                 <th>Time</th>
+                <th>Exam attempts</th>
                 <th>Edit</th>
                 <th> Delete</th>
 
@@ -35,12 +36,13 @@
                 <td>{{$item->exam_name}}</td>
                 <td>{{$item->subject_name}}</td>
                 <td>{{$item->date}}</td>
-                <td>{{$item->time}}</td>
+                <td>{{$item->time}} Hrs</td>
+                <td>{{$item->attempt}} Times</td>
                 <td>
-                <a href="{{route('editsubject',$item->id)}}" title="Edit exam"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></a>
+                <a href="{{route('editexam',$item->id)}}" title="Edit exam"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></a>
 
                 </td>
-                <td>  <a href="{{route('deletesubject',$item->id)}}" onclick="confirmation(event)" title=" Delete exam"><button class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+                <td>  <a href="{{route('deleteexam',$item->id)}}" onclick="confirmation(event)" title=" Delete exam"><button class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
                 </td>
               </tr>
               @endforeach

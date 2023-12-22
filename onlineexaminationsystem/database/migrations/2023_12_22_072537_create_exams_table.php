@@ -17,6 +17,7 @@ $table->string('exam_name');
 $table->string('subject_name');
 $table->string('date');
 $table->string('time');
+$table->string('attempt');
 $table->timestamp('created_at')->useCurrent();
 $table->timestamp('updated_at')->useCurrent();
         });
