@@ -38,7 +38,7 @@ Route::post('/forgotpassword',[AuthController::class,'ForgotPassword'])->name('f
 
 Route::group(['middleware'=>['web','checkAdmin']],function(){
 
-    Route::post('/admin/dashboard',[AuthController::class,'AdminDashboard'])->name('admindashboard');
+    Route::get('/admin/dashboard',[AuthController::class,'AdminDashboard'])->name('admindashboard');
 
 });
 

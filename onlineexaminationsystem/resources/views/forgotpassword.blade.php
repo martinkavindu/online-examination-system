@@ -25,13 +25,15 @@
 
       @csrf
       <div class="input-box">
-        <input type="email"  name="email" placeholder="Enter email" required >
+        <input type="email"  name="email" placeholder="Email" required >
         <i class='bx bxs-envelope'></i>
       </div>
 
    
       <input type="submit" value="forgot password" class="btn">
-
+      <div class="register-link">
+        <p><a href="{{route('login')}}">Login</a></p>
+      </div>
     </form>
 
   </div>

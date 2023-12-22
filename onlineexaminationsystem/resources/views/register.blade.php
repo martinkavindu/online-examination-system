@@ -12,7 +12,7 @@
   @if($errors->any())
 
   @foreach ($errors->all() as $item)
-      <p style="color: red;">{{$error}}</p>
+      <p style="color: red;">{{$errors}}</p>
   @endforeach
   @endif
     <form action="{{route('studentregister')}}" method="POST" >
