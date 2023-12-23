@@ -59,14 +59,19 @@
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
                                 <a href="{{route('allexam')}}" class="sidebar-link">All </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="" class="sidebar-link">Add </a>
-                            </li>
-                           
                         </ul>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="{{route('q&a')}}" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages"
+                            aria-expanded="false" aria-controls="pages">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i>  Q&As
 
+                        </a>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="{{route('q&a')}}" class="sidebar-link">Add</a>
+                        </ul>
+                    </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#auth"
                             aria-expanded="false" aria-controls="auth">
@@ -187,6 +192,21 @@
       });
     }
     
+      </script>
+      <script>
+        function addAnswer() {
+            const answersContainer = document.getElementById('answers-container');
+            const answerInput = document.createElement('div');
+            answerInput.classList.add('answer-input');
+            answerInput.innerHTML = `
+                <input type="text" name="answers[][answer]" placeholder="Enter answer" required>
+                <label>
+                    <input type="checkbox" name="answers[][is_correct]">
+                    Correct Answer
+                </label>
+            `;
+            answersContainer.appendChild(answerInput);
+        }
       </script>
 </body>
 

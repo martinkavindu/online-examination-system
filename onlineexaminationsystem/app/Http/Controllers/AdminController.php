@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Subjects;
+use App\Models\Answers;
+use App\Models\Questions;
 use App\Models\exam;
 
 class AdminController extends Controller
@@ -125,6 +127,37 @@ return view('exam.edit_exam',compact('exams'));
         exam::findOrFail($id)->delete();
 
         return back()->with('message',"exam deleted successfully");
+    }
+    
+    //q$a methods
+
+    public function qnaDashboard(){
+
+        return view('exam.qnadashboard');
+    }
+
+    public function StoreQna(Request $request)
+    {
+        $request->validate([
+            'question' => 'required|string',
+            'answers' => 'required|array',
+            'answers.*.answer' => 'required|string',
+            'answers.*.is_correct' => 'required|boolean',
+        ]);
+    
+        Questions::insert([
+            'question' => $request->question,
+
+        ]);
+        Answers::insert([
+            'question_id' => $request->question_id,
+            'answer' => $request->answer,
+            'is_correct'=>$request->is_correct
+
+        ]);
+      
+    
+        return redirect()->back()->with('success', 'Question and answers added successfully');
     }
     
 }

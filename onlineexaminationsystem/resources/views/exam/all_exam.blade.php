@@ -13,7 +13,7 @@
         </a>
         <div class="mt-5">
       
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
               <tr>
                 <th >No</th>
