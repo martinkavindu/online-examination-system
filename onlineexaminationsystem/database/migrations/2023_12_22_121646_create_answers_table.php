@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->integer('question_id');
             $table->string('answer');
-            $table->integer('is_correct');
+            $table->boolean('is_correct');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

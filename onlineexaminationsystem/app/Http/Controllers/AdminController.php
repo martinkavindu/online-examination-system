@@ -136,28 +136,30 @@ return view('exam.edit_exam',compact('exams'));
         return view('exam.qnadashboard');
     }
 
-    public function StoreQna(Request $request)
+    public function storeQna(Request $request)
     {
         $request->validate([
             'question' => 'required|string',
             'answers' => 'required|array',
             'answers.*.answer' => 'required|string',
-            'answers.*.is_correct' => 'required|boolean',
+            'answers.*.is_correct' => 'nullable|boolean', // Adjusted to make it nullable
         ]);
     
-        Questions::insert([
-            'question' => $request->question,
-
+        $question = Questions::create([
+            'question' => $request->input('question'),
         ]);
-        Answers::insert([
-            'question_id' => $request->question_id,
-            'answer' => $request->answer,
-            'is_correct'=>$request->is_correct
-
-        ]);
-      
+    
+        foreach ($request->input('answers') as $answerData) {
+            Answers::create([
+                'question_id' => $question->id,
+                'answer' => $answerData['answer'],
+                'is_correct' => isset($answerData['is_correct']) ? 1 : 0, // Set is_correct to 1 if checkbox is checked, 0 otherwise
+            ]);
+        }
     
         return redirect()->back()->with('success', 'Question and answers added successfully');
     }
+    
+    
     
 }
