@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('answers', function (Blueprint $table) {
+            $table->id();
+
             $table->integer('question_id');
             $table->string('answer');
-            $table->boolean('is_correct');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->integer('is_correct');
+            $table->timestamps();
         });
     }
 

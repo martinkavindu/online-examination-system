@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Subjects;
-use App\Models\Answers;
-use App\Models\Questions;
+use App\Models\Answer;
+use App\Models\Question;
 use App\Models\exam;
 
 class AdminController extends Controller
@@ -138,27 +138,36 @@ return view('exam.edit_exam',compact('exams'));
 
     public function storeQna(Request $request)
     {
-        $request->validate([
-            'question' => 'required|string',
-            'answers' => 'required|array',
-            'answers.*.answer' => 'required|string',
-            'answers.*.is_correct' => 'nullable|boolean', // Adjusted to make it nullable
+try {
+    $questionId = Question::insertGetId([
+        'question' => $request->question
+    ]);
+
+    foreach($request->answers as $answer){
+        $is_correct=0;
+        if($request->is_correct == $answer){
+$is_correct = 1;
+        }
+
+        Answer::insert([
+"question_id"=>$questionId,
+'answer'=>$answer,
+'is_correct'=>$is_correct
         ]);
-    
-        $question = Questions::create([
-            'question' => $request->input('question'),
-        ]);
-    
-        foreach ($request->input('answers') as $answerData) {
-            Answers::create([
-                'question_id' => $question->id,
-                'answer' => $answerData['answer'],
-                'is_correct' => isset($answerData['is_correct']) ? 1 : 0, // Set is_correct to 1 if checkbox is checked, 0 otherwise
-            ]);
+    }
+
+    return response()->json(['success'=>true,'message'=>'qna added successfully']);
+
+
+} catch (\Exception $e) {
+  
+    return response()->json(['success'=>false, 'message'=>$e->getMessage()]);
+}
+       
         }
     
-        return redirect()->back()->with('success', 'Question and answers added successfully');
-    }
+      
+    
     
     
     

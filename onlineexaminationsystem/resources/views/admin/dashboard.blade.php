@@ -199,14 +199,61 @@
             const answerInput = document.createElement('div');
             answerInput.classList.add('answer-input');
             answerInput.innerHTML = `
-                <input type="text" name="answers[][answer]" placeholder="Enter answer" required>
-                <label>
-                    <input type="checkbox" name="answers[][is_correct]">
+                <input type="text" name="answers[]" placeholder="Enter answer" required>
+                <label class="text-white mt-2">
+                    <input type="radio" name="is_correct" class="is_correct">
                     Correct Answer
                 </label>
             `;
             answersContainer.appendChild(answerInput);
         }
+      </script>
+
+      <script>
+
+$(document).ready(function () {
+    $('form').submit(function (event) {
+        event.preventDefault();
+
+        var checkIsCorrect = false;
+
+for(let i =0 ;i<$('.is_correct').length;i++){
+    if($('.is_correct:eq('+i+')').prop('checked') == true)
+    {
+        checkIsCorrect =true;
+        $('.is_correct:eq('+i+')').val($('.is_correct:eq('+i+')').next().find('input').val());
+    }
+}
+
+        if (checkIsCorrect) {
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: "{{ route('storeqna') }}",
+                type: "POST",
+                data: formData,
+                success: function (data) {
+                    console.log(data);
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert(data.message);
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        } else {
+            $('.error').text('Please select the correct answer');
+
+            setTimeout(function () {
+                $('.error').text('');
+            }, 2000);
+        }
+    });
+});
+
       </script>
 </body>
 
