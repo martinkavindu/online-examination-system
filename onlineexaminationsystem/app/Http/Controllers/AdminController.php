@@ -166,8 +166,19 @@ $is_correct = 1;
        
         }
     
+
+        public function Allqna (){
+            $questions = Question::with('answer')->get();
+
+            return view('exam.allqna',compact('questions'));
+        }
       
     
+        public function Answers(){
+            $questions = Question::with('answer')->get();
+
+            return view('exam.answers', ['questions' => $questions]);
+        }
     
     
     
