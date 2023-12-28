@@ -35,6 +35,8 @@
         <td>
     <a href="{{route('answers',$question->id)}}" class="ansButton" data-id="{{$question->id}}">See answer </a>
         </td>
+
+        <td> <a href="" class="btn btn-info" title="edit">Edit </a> </td>
      </tr>
 
     @endforeach
