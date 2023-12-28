@@ -174,10 +174,12 @@ $is_correct = 1;
         }
       
     
-        public function Answers(){
-            $questions = Question::with('answer')->get();
+        public function Answers($id){ 
+            $question = Question::findOrFail($id);
+            $answers = $question->answer;
 
-            return view('exam.answers', ['questions' => $questions]);
+            return view('exam.answers', compact('answers'));
+        
         }
     
     

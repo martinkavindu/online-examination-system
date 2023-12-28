@@ -11,20 +11,27 @@
 
         <div class="mt-5">
       
-        <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th >No</th>
-                <th>Answers</th>
-                <th>Is Correct</th>
- </tr>
-            </thead>
-<tbody class="showAnswers">
-
-
-</tbody>
-
-          </table>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    
+                        <th>Question ID</th>
+                        <th>Answer</th>
+                        <th>Correct Answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($answers as $index => $item)
+                        <tr>
+                          
+                            <td>{{ $item->question_id }}</td>
+                            <td>{{ $item->answer }}</td>
+                            <td>{{ $item->is_correct }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            
         </div>
 
     </div>

@@ -33,7 +33,7 @@
             {{$question->question}}
         </td>
         <td>
-    <a href="{{route('answers')}}" class="ansButton" data-id="{{$question->id}}">See answer </a>
+    <a href="{{route('answers',$question->id)}}" class="ansButton" data-id="{{$question->id}}">See answer </a>
         </td>
      </tr>
 

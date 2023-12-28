@@ -264,49 +264,7 @@ for(let i =0 ;i<$('.is_correct').length;i++){
 
       </script>
 //show answers code
-      <script>
-$('.ansButton').click(function(){
-
-var questions = @json($questions);
-
-var qid = $(this).attr('data-id');
-var html = '';
-console.log(questions);
-
-for(let i=0;i<questions.length;i++){
-
-    if(questions[i]['id'] == qid){
-
-        var answersLength = questions[i]['answers'].length;
-        for(let j=0; j <answersLength;j++){
-
-            let is_correct = 'No';
-
-            if( +questions[i]['answers'][j][is_correct]==1){
-                is_correct ='yes';
-
-            }
-
-            html += `
-            <tr>
-                <td> ` +(j+1)` </td>
-                <td>  ` +questions[i]['answers'][j]['answer']+`</td>
-               <td>` +is_correct` </td>
-
-                </tr>
-                `;
-        }
-        break;
-
-
-    }
-}
-
-$('.showAnswers').html(html);
-});
-
-
-      </script>
+ 
 </body>
 
 </html>
