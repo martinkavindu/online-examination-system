@@ -7,7 +7,13 @@ use App\Models\Subjects;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\exam;
-
+use App\Models\User;
+use App\Imports\QnaImport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Hash;
+use Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
 class AdminController extends Controller
 {
     
@@ -181,7 +187,41 @@ $is_correct = 1;
             return view('exam.answers', compact('answers'));
         
         }
+
+        public function Importqna (){
+            return view ('exam.importqna');
+        }
     
+        public function Import (){
+            Excel::import(new QnaImport, $request->file('file'));
+
+            return redirect()->route('allqna')->with('message','Questions and answers uploaded successfully');
+
+        }
+
+        //students
+
+        public function Allstudents (){
+
+    $students = User::where('is_admin',0)->get();
     
+    return view('admin.allstudents',compact('students'));
+        }
+    
+        public function Addstudent(){
+            return view('admin.addstudent');
+        }
+
+        public function StoreStudent (Request $request){
+
+            $password = Str::random(8);
+
+            User::insert([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($password)
+            ]);
+
+        }
     
 }

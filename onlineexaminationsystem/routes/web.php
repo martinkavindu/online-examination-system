@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,6 +65,16 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::post('/store/qna',[AdminController::class,'StoreQna'])->name('storeqna');
     Route::get('/all/qna',[AdminController::class,'Allqna'])->name('allqna');
     Route::get('/answers/{id}',[AdminController::class,'Answers'])->name('answers');
+
+    Route::get('/import/qna',[AdminController::class,'Importqna'])->name('importqna');
+    Route::post('/import',[AdminController::class,'Import'])->name('import');
+
+    // all students routes
+    Route::get('/all/students',[AdminController::class,'Allstudents'])->name('students');
+    Route::get('/add/student',[AdminController::class,'Addstudent'])->name('addstudent');
+    Route::post('/store/student',[AdminController::class,'StoreStudent'])->name('storestudent');
+
+
 
 });
 

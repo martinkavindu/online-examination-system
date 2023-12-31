@@ -11,6 +11,9 @@
     <a href="{{route('q&a')}}" class="btn btn-success btn-sm" title="Add New course">
             <i class="fa fa-plus" aria-hidden="true"></i> Add New
         </a>
+        <a href="{{route('importqna')}}" class="btn btn-info btn-sm" title="Add New course">
+            <i class="fa fa-upload" aria-hidden="true"></i>  Import Q&A
+        </a>
         <div class="mt-5">
       
         <table class="table table-bordered">
@@ -19,6 +22,8 @@
                 <th >No</th>
                 <th>Questions</th>
                 <th>Answers</th>
+                <th>Edit</th>
+                <th>Delete</th>
  </tr>
             </thead>
 <tbody>
@@ -37,6 +42,7 @@
         </td>
 
         <td> <a href="" class="btn btn-info" title="edit">Edit </a> </td>
+        <td> <a href="" class="btn btn-danger" title="delete">Delete </a> </td>
      </tr>
 
     @endforeach
