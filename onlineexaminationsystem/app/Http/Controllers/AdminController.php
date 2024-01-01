@@ -211,29 +211,53 @@ $is_correct = 1;
         public function Addstudent(){
             return view('admin.addstudent');
         }
-
-        public function StoreStudent (Request $request){
-
+        public function storeStudent(Request $request)
+        {
             $password = Str::random(8);
+        
+            try {
+                // Attempt to insert the student
+                User::insert([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($password)
+                ]);
+        
+            /*    $url = URL::to('/');
+                $data['url'] = $url;
+                $data['email'] = $request->email;
+                $data['password'] = $password;
+                $data['title'] = 'Student registration on OES';
+        
+                Mail::send('registrationMail', ['data' => $data], function ($message) use ($data) {
+                    $message->to($data['email'])->subject($data['title']);
+                });
+                */
+        
+                return redirect()->route('students')->with('message', 'Student added successfully');
+            } catch (QueryException $e) {
+                // Check if the error code indicates a duplicate entry violation
+                if ($e->getCode() == '23000') {
+                    // Duplicate entry violation
+                    return redirect()->route('students')->with('error', 'Email already exists');
+                }
+        
+                // Handle other database errors
+                return redirect()->route('students')->with('error', 'Error adding student');
+            }
+        
+        }
 
-            User::insert([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($password)
-            ]);
+        public function DeleteStudent($id){
 
-            $url = URL::to('/');
-            $data['url'] = $url;
-            $data['email'] = $request->name;
-            $data['password'] = $password;
-            $data['title'] = 'Student registration on OES';
-
-            Mail::send('registrationMail',['data'=>$data], function($message) use ($data){
-                $message->to($data['email'])->subject($data['title']);
-
-                return redirect()->route('students')->with('message', 'student added successfully');
-            });
-
+            $user = User::findOrFail($id);
+    
+            if(!is_null($user)){
+        
+                $user->delete();
+            }
+            return redirect()->route('students')->with('message','student deleted successfuly');
+    
         }
     
 }

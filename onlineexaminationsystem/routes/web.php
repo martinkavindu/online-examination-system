@@ -73,6 +73,7 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::get('/all/students',[AdminController::class,'Allstudents'])->name('students');
     Route::get('/add/student',[AdminController::class,'Addstudent'])->name('addstudent');
     Route::post('/store/student',[AdminController::class,'StoreStudent'])->name('storestudent');
+    Route::get('/delete/student/{id}',[AdminController::class,'DeleteStudent'])->name('deletestudent');
 
 
 

@@ -22,6 +22,7 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Exam attempts</th>
+                <th> Questions</th>
                 <th>Edit</th>
                 <th> Delete</th>
 
@@ -38,6 +39,9 @@
                 <td>{{$item->date}}</td>
                 <td>{{$item->time}} Hrs</td>
                 <td>{{$item->attempt}} Times</td>
+
+                <td> <a href ='' data-id="{{$exam->id}}"> Add Questions </a> </td>
+      
                 <td>
                 <a href="{{route('editexam',$item->id)}}" title="Edit exam"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></a>
 

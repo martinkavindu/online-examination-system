@@ -82,7 +82,7 @@
                         <a href="{{route('students')}}" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#multi"
                             aria-expanded="false" aria-controls="multi">
                             <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                            student
+                            Students
                         </a>
                         <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
@@ -214,54 +214,51 @@
         }
       </script>
 
-      <script>
+      <!-- <script>
+    // $(document).ready(function () {
+    //     $('form').submit(function (event) {
+    //         event.preventDefault();
 
-$(document).ready(function () {
-    $('form').submit(function (event) {
-        event.preventDefault();
+    //         var checkIsCorrect = false;
 
-        var checkIsCorrect = false;
+    //         for(let i =0 ;i<$('.is_correct').length;i++){
+    //             if($('.is_correct:eq('+i+')').prop('checked') == true)
+    //             {
+    //                 checkIsCorrect =true;
+    //                 $('.is_correct:eq('+i+')').val($('.is_correct:eq('+i+')').next().find('input').val());
+    //             }
+    //         }
 
-for(let i =0 ;i<$('.is_correct').length;i++){
-    if($('.is_correct:eq('+i+')').prop('checked') == true)
-    {
-        checkIsCorrect =true;
-        $('.is_correct:eq('+i+')').val($('.is_correct:eq('+i+')').next().find('input').val());
-    }
-}
+    //         if (checkIsCorrect) {
+    //             var formData = $(this).serialize();
 
-        if (checkIsCorrect) {
-            var formData = $(this).serialize();
+    //             $.ajax({
+    //                 url: "{{ route('storeqna') }}",
+    //                 type: "POST",
+    //                 data: formData,
+    //                 success: function (data) {
+    //                     console.log(data);
+    //                     if (data.success) {
+    //                         location.reload();
+    //                     } else {
+    //                         alert(data.message);
+    //                     }
+    //                 },
+    //                 error: function (error) {
+    //                     console.log(error);
+    //                 }
+    //             });
+    //         } else {
+    //             $('.error').text('Please select the correct answer');
 
-            $.ajax({
-                url: "{{ route('storeqna') }}",
-                type: "POST",
-                data: formData,
-                success: function (data) {
-                    console.log(data);
-                    if (data.success) {
-                        location.reload();
-                    } else {
-                        alert(data.message);
-                    }
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        } else {
-            $('.error').text('Please select the correct answer');
+    //             setTimeout(function () {
+    //                 $('.error').text('');
+    //             }, 2000);
+    //         }
+    //     });
+    // });
+</script> -->
 
-            setTimeout(function () {
-                $('.error').text('');
-            }, 2000);
-        }
-    });
-});
-
-
-
-      </script>
 //show answers code
  
 </body>

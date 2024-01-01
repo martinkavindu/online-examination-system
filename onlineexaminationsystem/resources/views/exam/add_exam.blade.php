@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 
 @section('content')
-    <form action="{{route('storexam')}}" method="post">
+    <form action="{{route('storexam')}}" method="POST">
         @csrf
 <div class="mb-5"> 
     <h3 class="btn btn-success"> Add Exam</h3>
