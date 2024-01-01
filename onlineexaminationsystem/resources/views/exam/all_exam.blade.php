@@ -40,7 +40,7 @@
                 <td>{{$item->time}} Hrs</td>
                 <td>{{$item->attempt}} Times</td>
 
-                <td> <a href ='' data-id="{{$exam->id}}"> Add Questions </a> </td>
+                <td> <a href ='{{route('questions',$item->id)}}' > Add Questions </a> </td>
       
                 <td>
                 <a href="{{route('editexam',$item->id)}}" title="Edit exam"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></a>

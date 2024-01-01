@@ -259,5 +259,13 @@ $is_correct = 1;
             return redirect()->route('students')->with('message','student deleted successfuly');
     
         }
+
+        // add questions to the exams   
+
+        public function Questions($id){
+
+            exam::findOrFail($id);
+            return view('exam.quesions');
+        }
     
 }
