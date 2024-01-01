@@ -265,7 +265,7 @@ $is_correct = 1;
         public function Questions($id){
 
             exam::findOrFail($id);
-            return view('exam.quesions');
+            return view('exam.questions');
         }
     
 }
