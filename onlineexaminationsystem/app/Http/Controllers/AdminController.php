@@ -265,7 +265,8 @@ $is_correct = 1;
         public function Questions($id){
 
             exam::findOrFail($id);
-            return view('exam.questions');
+            $questions = Question::all();
+            return view('exam.questions',compact('questions'));
         }
     
 }
