@@ -222,6 +222,18 @@ $is_correct = 1;
                 'password' => Hash::make($password)
             ]);
 
+            $url = URL::to('/');
+            $data['url'] = $url;
+            $data['email'] = $request->name;
+            $data['password'] = $password;
+            $data['title'] = 'Student registration on OES';
+
+            Mail::send('registrationMail',['data'=>$data], function($message) use ($data){
+                $message->to($data['email'])->subject($data['title']);
+
+                return redirect()->route('students')->with('message', 'student added successfully');
+            });
+
         }
     
 }
