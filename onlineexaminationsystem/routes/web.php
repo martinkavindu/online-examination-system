@@ -76,7 +76,10 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::get('/delete/student/{id}',[AdminController::class,'DeleteStudent'])->name('deletestudent');
 
 // add questions to exams 
-Route::get('/questions/{id}',[AdminController::class,'Questions'])->name('questions');
+// web.php
+Route::get('/questions/{exam_id}', [AdminController::class, 'Questions'])->name('questions');
+
+Route::post('/store/qnaexam',[AdminController::class,'StoreQnaExam'])->name('storeqnaexam');
 
 });
 

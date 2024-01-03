@@ -7,6 +7,7 @@ use App\Models\Subjects;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\exam;
+use App\Models\QnaExam;
 use App\Models\User;
 use App\Imports\QnaImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -261,12 +262,53 @@ $is_correct = 1;
         }
 
         // add questions to the exams   
-
-        public function Questions($id){
-
-            exam::findOrFail($id);
+        public function Questions(Request $request, $exam_id)
+        {
+            $exam = exam::findOrFail($exam_id);
             $questions = Question::all();
-            return view('exam.questions',compact('questions'));
+            return view('exam.questions', compact('questions', 'exam'));
         }
+        
+
+        public function storeQnaExam(Request $request)
+        {
+            try {
+                // Validate the form data
+                $request->validate([
+                    'exam_id' => 'required|exists:exams,id',
+                    'questions' => 'required|array',
+                    'questions.*' => 'exists:questions,id',
+                ]);
+
+        
+                // Retrieve exam
+                $exam = exam::findOrFail($request->input('exam_id'));
+        
+                // Attach selected questions to the exam using the QnaExam model
+                foreach ($request->input('questions') as $questionId) {
+                    QnaExam::insert([
+                        'exam_id' => $exam->id,
+                        'question_id' => $questionId,
+                    ]);
+                }
+        
+                // Log a success message
+                \Log::info('Questions added to exam successfully', [
+                    'exam_id' => $exam->id,
+                    'questions' => $request->input('questions'),
+                ]);
+        
+                return redirect()->route('allexam')->with('message', 'Questions added to exam successfully');
+            } catch (\Exception $e) {
+                // Log the error
+                \Log::error('Error adding questions to exam', [
+                    'error_message' => $e->getMessage(),
+                    'stack_trace' => $e->getTraceAsString(),
+                ]);
+        
+                return redirect()->route('allexam')->with('error', 'Error adding questions to exam. Please try again.');
+            }
+        }
+        
     
 }
