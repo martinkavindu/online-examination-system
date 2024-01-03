@@ -272,43 +272,32 @@ $is_correct = 1;
 
         public function storeQnaExam(Request $request)
         {
-            try {
+          
                 // Validate the form data
                 $request->validate([
                     'exam_id' => 'required|exists:exams,id',
-                    'questions' => 'required|array',
-                    'questions.*' => 'exists:questions,id',
+                    'question_id' => 'required|array',
+                    'question_id.*' => 'exists:questions,id',
                 ]);
-
         
                 // Retrieve exam
                 $exam = exam::findOrFail($request->input('exam_id'));
         
-                // Attach selected questions to the exam using the QnaExam model
-                foreach ($request->input('questions') as $questionId) {
-                    QnaExam::insert([
+                // Attach selected questions to the exam using Eloquent's createMany method
+                $qnaExams = [];
+                foreach ($request->input('question_id') as $questionId) {
+                    $qnaExams[] = [
                         'exam_id' => $exam->id,
                         'question_id' => $questionId,
-                    ]);
+                    ];
                 }
         
-                // Log a success message
-                \Log::info('Questions added to exam successfully', [
-                    'exam_id' => $exam->id,
-                    'questions' => $request->input('questions'),
-                ]);
+                QnaExam::insert($qnaExams);
         
                 return redirect()->route('allexam')->with('message', 'Questions added to exam successfully');
-            } catch (\Exception $e) {
-                // Log the error
-                \Log::error('Error adding questions to exam', [
-                    'error_message' => $e->getMessage(),
-                    'stack_trace' => $e->getTraceAsString(),
-                ]);
-        
-                return redirect()->route('allexam')->with('error', 'Error adding questions to exam. Please try again.');
-            }
+
         }
+        
         
     
 }
