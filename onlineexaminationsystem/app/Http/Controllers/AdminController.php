@@ -145,34 +145,34 @@ return view('exam.edit_exam',compact('exams'));
 
     public function storeQna(Request $request)
     {
-try {
-    $questionId = Question::insertGetId([
-        'question' => $request->question
-    ]);
+        // Validate the form data
+        $request->validate([
+            'question' => 'required|string',
+            'answer' => 'required|array',
+            'answer.*' => 'string',
+            'is_correct' => 'required|array',
+        ]);
 
-    foreach($request->answers as $answer){
-        $is_correct=0;
-        if($request->is_correct == $answer){
-$is_correct = 1;
+        // Create a new question
+        $question = Question::create([
+            'question' => $request->input('question'),
+        ]);
+
+        // Create answers
+        foreach ($request->input('answer') as $key => $answerText) {
+            $isCorrect = $request->input('is_correct.' . $key) === 'on';
+            
+            Answer::create([
+                'question_id' => $question->id,
+                'answer' => $answerText,
+                'is_correct' => $isCorrect,
+            ]);
         }
 
-        Answer::insert([
-"question_id"=>$questionId,
-'answer'=>$answer,
-'is_correct'=>$is_correct
-        ]);
+        return redirect()->route('allqna')->with('message', 'Q&A created successfully');
     }
 
-    return response()->json(['success'=>true,'message'=>'qna added successfully']);
 
-
-} catch (\Exception $e) {
-  
-    return response()->json(['success'=>false, 'message'=>$e->getMessage()]);
-}
-       
-        }
-    
 
         public function Allqna (){
             $questions = Question::with('answer')->get();

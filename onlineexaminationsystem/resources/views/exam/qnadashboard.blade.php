@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="qsn">
-    <form>
+    <form action="{{route('storeqna')}}" method="POST">
         @csrf
 
         <label for="question" class="text-white">Question:</label>
@@ -12,7 +12,7 @@
         <label for="answers" class="text-white">Answers:</label>
         <div id="answers-container">
             <div class="answer-input">
-                <input type="text" name="answers[]" placeholder="Enter answer" required>
+                <input type="text" name="answer[]" placeholder="Enter answer" required>
                 <label class="text-white">
                     <input type="radio" name='is_correct' class="is_correct">
                     Correct Answer
