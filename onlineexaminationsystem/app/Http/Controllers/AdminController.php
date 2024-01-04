@@ -161,18 +161,19 @@ return view('exam.edit_exam',compact('exams'));
 {
 
 
-
-    $correctAnswerIndex = $request->input('correct_answer') ;
+    $correctAnswerIndex = $request->input('is_correct');
+    $questionId = $request->input('question_id');
 
     foreach ($request->input('answers') as $index => $answerData) {
-        $isCorrect = $index === $correctAnswerIndex ? 1 : 0;
+        $isCorrect = $index === (int)$correctAnswerIndex ? 1 : 0;
 
         Answer::create([
-            'question_id' => $request->input('question_id'),
+            'question_id' => $questionId,
             'answer' => $answerData['text'],
             'is_correct' => $isCorrect,
         ]);
     }
+    
     return redirect()->route('allqna')->with('message',"Answers created successfully");
 }
 
