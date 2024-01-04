@@ -29,7 +29,7 @@
       @for($i = 1; $i <= 4; $i++)
           <label for="answer{{ $i }}" class="text-white">Option {{ $i }}</label>
           <input type="text" name="answers[{{ $i }}][text]" id="answer{{ $i }}" class="form-control" required>
-          <input type="radio" name="correct_answer" value="{{ $i }}" required> Correct Answer<br>
+          <input type="radio" name="is_correct" value="{{ $i }}" required> Correct Answer<br>
       @endfor
   </div>
   
