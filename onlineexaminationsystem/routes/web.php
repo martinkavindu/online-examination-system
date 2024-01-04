@@ -61,10 +61,12 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::get('/delete/exam/{id}',[AdminController::class,'DeleteExam'])->name('deleteexam');
 
     //Q&A routes
-    Route::get('/all/q&a',[AdminController::class,'qnaDashboard'])->name('q&a');
-    Route::post('/store/qna',[AdminController::class,'StoreQna'])->name('storeqna');
+    Route::get('/all/q&a',[AdminController::class,'qnaDashboard'])->name('addqsn');
+    Route::post('/store/qsn',[AdminController::class,'StoreQns'])->name('storeqsn');
     Route::get('/all/qna',[AdminController::class,'Allqna'])->name('allqna');
     Route::get('/answers/{id}',[AdminController::class,'Answers'])->name('answers');
+    Route::get('/add/answers',[AdminController::class,'AddAnswer'])->name('addanswer');
+    Route::post('/store/answer',[AdminController::class,'StoreAnswer'])->name('storeanswer');
 
     Route::get('/import/qna',[AdminController::class,'Importqna'])->name('importqna');
     Route::post('/import',[AdminController::class,'Import'])->name('import');

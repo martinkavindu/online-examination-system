@@ -140,10 +140,43 @@ return view('exam.edit_exam',compact('exams'));
 
     public function qnaDashboard(){
 
-        return view('exam.qnadashboard');
+        return view('exam.addquestion');
     }
 
-    public function storeQna(Request $request)
+
+    public function StoreQns (Request $request){
+        Question::insert([
+            'question'=> $request->question
+        ]);
+        return redirect()->route('allqna')->with('message', 'Question added successfully');
+    }
+
+    public function AddAnswer (){
+
+        $questions = Question::pluck('question','id');
+        return view ('exam.addanswer',compact('questions'));
+    }
+
+    public function StoreAnswer(Request $request)
+{
+
+
+
+    $correctAnswerIndex = $request->input('correct_answer') ;
+
+    foreach ($request->input('answers') as $index => $answerData) {
+        $isCorrect = $index === $correctAnswerIndex ? 1 : 0;
+
+        Answer::create([
+            'question_id' => $request->input('question_id'),
+            'answer' => $answerData['text'],
+            'is_correct' => $isCorrect,
+        ]);
+    }
+    return redirect()->route('allqna')->with('message',"Answers created successfully");
+}
+
+ /*   public function storeQna(Request $request)
     {
         // Validate the form data
         $request->validate([
@@ -172,7 +205,7 @@ return view('exam.edit_exam',compact('exams'));
         return redirect()->route('allqna')->with('message', 'Q&A created successfully');
     }
 
-
+*/
 
         public function Allqna (){
             $questions = Question::with('answer')->get();

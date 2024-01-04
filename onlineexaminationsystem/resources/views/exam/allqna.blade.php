@@ -8,9 +8,6 @@
         <h2>All Questions and Answers</h2>
     </div>
     <div class="card-body">
-    <a href="{{route('q&a')}}" class="btn btn-success btn-sm" title="Add New course">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-        </a>
         <a href="{{route('importqna')}}" class="btn btn-info btn-sm" title="Add New course">
             <i class="fa fa-upload" aria-hidden="true"></i>  Import Q&A
         </a>

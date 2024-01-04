@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('qna_exams', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('exam_id');
             $table->unsignedBigInteger('question_id');
+            $table->text('answer');
+            $table->unsignedTinyInteger('is_correct');
             $table->timestamps();
+    
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('qna_exams');
+        Schema::dropIfExists('answers');
     }
 };

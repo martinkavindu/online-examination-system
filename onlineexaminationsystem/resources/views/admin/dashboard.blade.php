@@ -64,14 +64,18 @@
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{route('q&a')}}" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages"
+                        <a href="{{route('allqna')}}" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages"
                             aria-expanded="false" aria-controls="pages">
                             <i class="fa fa-question-circle" aria-hidden="true"></i>  Q&As
 
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="{{route('q&a')}}" class="sidebar-link">Add</a>
+                                <a href="{{route('addqsn')}}" class="sidebar-link">Add Questions</a>
+
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="{{route('addanswer')}}" class="sidebar-link">Add Answers</a>
 
                             </li>
                             <li class="sidebar-item">
@@ -235,7 +239,7 @@
     //             var formData = $(this).serialize();
 
     //             $.ajax({
-    //                 url: "{{ route('storeqna') }}",
+    //                 url: "",
     //                 type: "POST",
     //                 data: formData,
     //                 success: function (data) {
