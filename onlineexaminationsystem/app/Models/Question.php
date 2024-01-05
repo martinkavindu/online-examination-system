@@ -18,4 +18,9 @@ class Question extends Model
 {
     return $this->belongsToMany(exam::class, 'qna_exam');
 }
+
+public function qnaExam()
+{
+    return $this->belongsTo(QnaExam::class, 'exam_id', 'exam_id');
+}
 }

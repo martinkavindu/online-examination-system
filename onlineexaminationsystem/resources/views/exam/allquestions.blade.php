@@ -21,18 +21,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(is_array($questions) || is_object($questions))
-                    @foreach ($questions as $index => $item)
-                        <tr>      
-                            <td>{{ $item->exam_id }}</td>
-                            <td>{{ $item->question_id }}</td>
-                        </tr>
-                    @endforeach
-                @else
-                    <p>No questions available.</p>
-                @endif
-                
+                    @if(is_array($questions))
+                        @foreach ($questions as $index => $item)
+                            <tr>      
+                                <td>{{ $item['exam_id'] }}</td>
+                                <td>{{ $item['question_id'] }}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <p>No questions available.</p>
+                    @endif
                 </tbody>
+                
             </table>
             
         </div>
