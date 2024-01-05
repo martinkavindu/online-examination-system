@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-    protected $guarded= [];
+    protected $fillable = ['question'];
     public function answer()
     {
         return $this->hasMany(Answer::class,'question_id','id');
@@ -21,6 +21,6 @@ class Question extends Model
 
 public function qnaExam()
 {
-    return $this->belongsTo(QnaExam::class, 'exam_id', 'exam_id');
+    return $this->belongsTo(QnaExam::class, 'exam_id', 'id');
 }
 }

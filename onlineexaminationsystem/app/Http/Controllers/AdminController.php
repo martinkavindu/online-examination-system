@@ -333,13 +333,15 @@ return view('exam.edit_exam',compact('exams'));
         }
         
         public function AllQuestions($id)
-        {
-            $exam = QnaExam::findOrFail($id);
-            $questions = $exam->questions; 
-        
-            return view('exam.allquestions', compact('exam', 'questions'));
-        }
-        
+{
+    $exam = QnaExam::findOrFail($id);
+    $questions = $exam->questions;
+
+
+
+    return view('exam.allquestions', compact('exam', 'questions'));
+}
+
         
     
 }
