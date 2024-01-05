@@ -22,7 +22,8 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Exam attempts</th>
-                <th> Questions</th>
+                <th>Add questions</th>
+                <th>All questions</th>
                 <th>Edit</th>
                 <th> Delete</th>
 
@@ -41,12 +42,14 @@
                 <td>{{$item->attempt}} Times</td>
 
                 <td><a href="{{ route('questions', ['exam_id' => $item->id]) }}">Add Questions</a></td>
+                 <td><a href="{{ route('allquestions', $item->id) }}" data-id="{{ $item->id }}">Show Questions</a></td> 
+
 
                 <td>
-                <a href="{{route('editexam',$item->id)}}" title="Edit exam"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></a>
+                <a href="{{route('editexam',$item->id)}}" title="Edit exam"><button class="btn btn-primary btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i> </button></a>
 
                 </td>
-                <td>  <a href="{{route('deleteexam',$item->id)}}" onclick="confirmation(event)" title=" Delete exam"><button class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+                <td>  <a href="{{route('deleteexam',$item->id)}}" onclick="confirmation(event)" title=" Delete exam"><button class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i></button></a>
                 </td>
               </tr>
               @endforeach

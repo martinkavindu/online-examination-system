@@ -82,6 +82,7 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
 Route::get('/questions/{exam_id}', [AdminController::class, 'Questions'])->name('questions');
 
 Route::post('/store/qnaexam',[AdminController::class,'StoreQnaExam'])->name('storeqnaexam');
+Route::get('/all/questions/{id}', [AdminController::class, 'AllQuestions'])->name('allquestions');
 
 });
 

@@ -332,6 +332,13 @@ return view('exam.edit_exam',compact('exams'));
 
         }
         
+        public function AllQuestions($id){
+
+            $exams = QnaExam::findOrFail($id);
+            $questions = $exams->question_id;
+
+            return view('exam.allquestions',compact('exams','questions'));
+        }
         
     
 }
