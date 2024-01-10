@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Exam;
 use Mail;
 use App\Models\PasswordReset;
 use Illuminate\Http\Request;
@@ -81,15 +82,19 @@ class AuthController extends Controller
       return back()->with('error','Email or password incorrect');
     }
   }
+  //students methods
     public function  Dashboard(){
+$exams = Exam::with('subjects')->orderBy('date')->get();
 
-      return view('student.dashboard');
+      return view('student.dashboard',['exams'=>$exams]);
     }
 
     public function AdminDashboard(){
-
+ 
       return view('admin.dashboard');
     }
+
+ 
 
     public function Logout (Request $request){
 
