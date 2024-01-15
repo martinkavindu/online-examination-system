@@ -94,17 +94,19 @@ class AdminController extends Controller
     }
     public function StoreExam(Request $request)
     {
+        $unique_id = uniqid('EXM');
         exam::insert([
             'exam_name' => $request->exam_name,
             'subject_name' => $request->subject_name,
             'date' => $request->date,
             'time' => $request->time,
-            'attempt' => $request->attempt
+            'attempt' => $request->attempt,
+            'entrance_id' => $unique_id
         ]);
     
         return redirect()->route('allexam')->with('message', 'Exam added successfully');
     }
-
+    
     public function EditExam ($id){
 
     $exams =  exam::findOrFail($id);

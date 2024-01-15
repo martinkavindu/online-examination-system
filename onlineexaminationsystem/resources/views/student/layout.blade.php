@@ -137,8 +137,27 @@
     
       </script>
       
+{{-- copy examlink --}}
+      <script>
+        $(document).ready(function () {
+            $('.copy').click(function () {
+                $(this).parent().prepend('<span class="copied_text">Copied</span>')
 
+                var code = $(this).attr('data-code');
+                var url = '{{URL::to('/')}}/exam/' + code;
 
+                var $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val(url).select();
+
+                document.execCommand('copy');
+                $temp.remove();
+                setTimeout(() => {
+                    $('.copied_text').remove();
+                }, 1000);
+            });
+        });
+    </script>
 
  
 </body>
