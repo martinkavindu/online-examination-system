@@ -7,38 +7,33 @@ use Illuminate\Http\Request;
 
 class ExamController extends Controller
 {
-    public function ExamDashboard($id){
 
-        $examqsn = exam::where('entrance_id',$id)->with('qnaExam')->get();
-         if(count($examqsn) > 0){
-  
-            if($examqsn[0]['date'] == date('Y-m-d')){
+    public function ExamDashboard($id)
+    {
+        $qnaExam = exam::where('entrance_id', $id)->with('getQnaExam')->get();
 
-                if (count($examqsn[0]['qnaExam']) >0 ){
-                    
-
-                }
-                else{
-                    
-   return view ('student.examDashboard',['success'=>false,'message'=>'This exam is not available!']);
-
-                }
+        if (count($qnaExam) > 0) {
+            
+            if ($qnaExam[0]['date'] == date('Y-m-d')) {
                 
-            }else if($examqsn[0]['date'] > date('Y-m-d')){
-
-   return view ('student.examDashboard',['success'=>false,'message'=>'This exam will start on ' .$examqsn[0]['date'],'exam'=>$examqsn]);
-
-
-            }else{
-  return view ('student.examDashboard',['success'=>false,'message'=>'This exam  is Expired' .$examqsn[0]['date'],'exam'=>$examqsn]);
-   
+                 if (count($qnaExam[0]['getQnaExam']) > 0) {
+                  
+                    $qna = QnaExam::where('exam_id',$qnaExam[0]['id'])->with('questions','answers')->get();
+                    return view ('student.examDashboard',['success'=>true,'exam'=>$qnaExam,'qna'=>$qna]);
+                 }
+                 else{
+                    return view('student.examDashboard', ['success' => false, 'message' => 'This exam is not available ', 'exam' => $qnaExam]);
+                 }
+            } elseif ($qnaExam[0]['date'] > date('Y-m-d')) {
+                return view('student.examDashboard', ['success' => false, 'message' => 'This exam will be done on ' . $qnaExam[0]['date'], 'exam' => $qnaExam]);
+            } else {
+                return view('student.examDashboard', ['success' => false, 'message' => 'This exam expired on ' . $qnaExam[0]['date'], 'exam' => $qnaExam]);
             }
-
-         }else
-         {
+        } else {
             return view('404');
-
-         }
-
+        }
     }
-}
+
+   
+      
+}    

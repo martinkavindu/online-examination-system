@@ -17,11 +17,11 @@ class exam extends Model
 
     public function questions()
 {
-    return $this->belongsToMany(Question::class, 'qna_exam');
+    return $this->belongsToMany(Question::class,'qna_exam');
 }
 
-public function qnaExam()
+public function getQnaExam()
 {
-    return $this->belongsTo(QnaExam::class, 'exam_id', 'id');
+    return $this->hasMany(QnaExam::class, 'exam_id', 'id');
 }
 }
