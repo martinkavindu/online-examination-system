@@ -17,8 +17,10 @@ class ExamController extends Controller
             if ($qnaExam[0]['date'] == date('Y-m-d')) {
                 
                  if (count($qnaExam[0]['getQnaExam']) > 0) {
-                  
-                    $qna = QnaExam::where('exam_id',$qnaExam[0]['id'])->with('questions','answers')->get();
+
+                    $qna = QnaExam::findOrFail();
+                    $questions = $exam->questions;
+                    
                     return view ('student.examDashboard',['success'=>true,'exam'=>$qnaExam,'qna'=>$qna]);
                  }
                  else{

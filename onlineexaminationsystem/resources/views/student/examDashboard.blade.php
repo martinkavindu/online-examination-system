@@ -15,8 +15,9 @@
             @if ($success == true)
             @if (count($qna) > 0)
                @foreach($qna as $data)
-               
-               <h5>Q. {{$data['question'][0]['questions']}}</h5>
+           <h5 class="text-white">    {{ $data['question'] }} </h5>
+{{--                
+               <h5>Q. {{$data['question'][0]['question']}}</h5> --}}
                @endforeach
            @else
            <h3 class="text-danger text-center"> Questions and Answers not available! </h3> 
