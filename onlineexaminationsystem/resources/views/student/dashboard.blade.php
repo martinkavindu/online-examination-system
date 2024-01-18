@@ -28,7 +28,7 @@
                         <td>{{$exam->time}} Hrs</td>
                         <td>{{$exam->attempt}}</td>
                         <td></td>
-                        <td><a href="#" data-code="{{$exam->entrance_id}}" class="copy"><i class="fa fa-copy"></i></a></td>
+                        <td><a href="#" data-code="{{$exam->id}}" class="copy"><i class="fa fa-copy"></i></a></td>
                     </tr>
                 @endforeach
             @else

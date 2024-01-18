@@ -7,12 +7,16 @@
 
     @if ($success == true)
     @if (count($qnaExams) > 0)
-    <h2 class="text-center text-primary text-capitalize">{{ $qnaExam->exam_name }}</h2>
+    {{-- <h2 class="text-center text-primary text-capitalize">{{ $qnaExam->exam_name }}</h2> --}}
 
-            @foreach($qnaExam->questions as $question)
-                <h5 class="text-white">{{ $question->question }}</h5>
-                {{-- You can customize the display of the question as needed --}}
-            @endforeach
+    @foreach ($questions as $question)
+{{--   
+        <p>{{ $exam->id }}</p> --}}
+        <p>{{ $question['id'] }}</p>
+        <p>{{ $question['question'] }}</p>
+     
+ 
+@endforeach
         @else
             <h3 class="text-danger text-center"> This exam is not available!</h3>
         @endif

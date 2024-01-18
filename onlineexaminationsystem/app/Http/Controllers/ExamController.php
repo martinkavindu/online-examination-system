@@ -10,7 +10,7 @@ class ExamController extends Controller
 
     public function ExamDashboard($id)
     {
-        $qnaExams = exam::where('entrance_id', $id)->with('getQnaExam')->get();
+        $qnaExams = exam::where('id', $id)->with('getQnaExam')->get();
 
         if (count($qnaExams) > 0) {
             
@@ -18,14 +18,8 @@ class ExamController extends Controller
                 
                 if (count($qnaExams[0]->getQnaExam) > 0) {
 
-                    $questions = [];
-
-                    foreach ($qnaExams[0]->getQnaExam as $exam) {
-                        // Assuming 'questions' is the relationship method in QnaExam model
-                        $questions[] = $exam->questions;
-                    }
-                    dd($questions);
-
+                    $exam = QnaExam::findOrFail($id);
+                    $questions = $exam->questions;
                     return view('student.examDashboard', ['success' => true, 'qnaExams' => $qnaExams, 'questions' => $questions]);
                 } else {
                     return view('student.examDashboard', ['success' => false, 'message' => 'This exam is not available ', 'qnaExams' => $qnaExams]);

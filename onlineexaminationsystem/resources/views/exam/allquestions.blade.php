@@ -29,7 +29,7 @@
                                 <td>{{ $exam->id }}</td>
                                 <td>{{ $question['id'] }}</td>
                                 <td>{{ $question['question'] }}</td>
-                               >
+                        
                             </tr>
                         @endforeach
                     </tbody>
