@@ -23,4 +23,9 @@ public function answers()
 {
     return $this->hasMany(Answer::class, 'question_id','question_id');
 }
+public function exams()
+{
+    return $this->belongsTo(exam::class, 'exam_id', 'id');
+}
+
 }

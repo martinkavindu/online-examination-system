@@ -10,32 +10,34 @@ class ExamController extends Controller
 
     public function ExamDashboard($id)
     {
-        $qnaExam = exam::where('entrance_id', $id)->with('getQnaExam')->get();
+        $qnaExams = exam::where('entrance_id', $id)->with('getQnaExam')->get();
 
-        if (count($qnaExam) > 0) {
+        if (count($qnaExams) > 0) {
             
-            if ($qnaExam[0]['date'] == date('Y-m-d')) {
+            if ($qnaExams[0]['date'] == date('Y-m-d')) {
                 
-                 if (count($qnaExam[0]['getQnaExam']) > 0) {
+                if (count($qnaExams[0]->getQnaExam) > 0) {
 
-                    $qna = QnaExam::findOrFail();
-                    $questions = $exam->questions;
-                    
-                    return view ('student.examDashboard',['success'=>true,'exam'=>$qnaExam,'qna'=>$qna]);
-                 }
-                 else{
-                    return view('student.examDashboard', ['success' => false, 'message' => 'This exam is not available ', 'exam' => $qnaExam]);
-                 }
-            } elseif ($qnaExam[0]['date'] > date('Y-m-d')) {
-                return view('student.examDashboard', ['success' => false, 'message' => 'This exam will be done on ' . $qnaExam[0]['date'], 'exam' => $qnaExam]);
+                    $questions = [];
+
+                    foreach ($qnaExams[0]->getQnaExam as $exam) {
+                        // Assuming 'questions' is the relationship method in QnaExam model
+                        $questions[] = $exam->questions;
+                    }
+                    dd($questions);
+
+                    return view('student.examDashboard', ['success' => true, 'qnaExams' => $qnaExams, 'questions' => $questions]);
+                } else {
+                    return view('student.examDashboard', ['success' => false, 'message' => 'This exam is not available ', 'qnaExams' => $qnaExams]);
+                }
+            } elseif ($qnaExams[0]['date'] > date('Y-m-d')) {
+                return view('student.examDashboard', ['success' => false, 'message' => 'This exam will be done on ' . $qnaExams[0]['date'], 'qnaExams' => $qnaExams]);
             } else {
-                return view('student.examDashboard', ['success' => false, 'message' => 'This exam expired on ' . $qnaExam[0]['date'], 'exam' => $qnaExam]);
+                return view('student.examDashboard', ['success' => false, 'message' => 'This exam expired on ' . $qnaExams[0]['date'], 'qnaExams' => $qnaExams]);
             }
         } else {
             return view('404');
         }
     }
-
-   
       
 }    
