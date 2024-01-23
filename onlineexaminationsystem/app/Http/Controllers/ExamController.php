@@ -19,8 +19,8 @@ class ExamController extends Controller
                 if (count($qnaExams[0]->getQnaExam) > 0) {
 
                     $exam = QnaExam::findOrFail($id);
-                    $questions = $exam->questions;
-                    return view('student.examDashboard', ['success' => true, 'qnaExams' => $qnaExams, 'questions' => $questions]);
+                    $questions = $exam->questions()->inRandomOrder()->with('answer')->get();
+                    return view('student.examDashboard', ['success' => true, 'qnaExams' => $qnaExams, 'questions' => $questions,'message' => ''. $qnaExams[0]['exam_name']]);
                 } else {
                     return view('student.examDashboard', ['success' => false, 'message' => 'This exam is not available ', 'qnaExams' => $qnaExams]);
                 }
