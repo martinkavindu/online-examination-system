@@ -159,7 +159,22 @@
         });
     </script>
 
- 
+ <script>
+    $(document).ready (function(){
+
+        $('.select_ans').click(function(){
+            var no =$(this).attr('data-id');
+            $('#ans_'+no).val($(this).val());
+        })
+    })
+
+    function isValid(){
+        var result = true;
+        var qlength = parseInt('{{$qcount}}')-1;
+
+        return result;
+    }
+ </script>
 </body>
 
 </html>
