@@ -1,16 +1,19 @@
 @extends('student.layout')
 
 @section('content')
+<div class="container">
+
+    <h3 class="text-white">  Welcome,   <i class="fa-regular fa-user pe-2"></i>  {{Auth::user()->name}} </h3> 
+    <h3 class="text-primary text-capitalize mt-5"> {{ $message }}</h3> 
     @php $qcount =1; @endphp
+    
     @if ($success == true)
         @if (count($qnaExams) > 0)
-        <form action="" method="POST" onsubmit="return isValid()">
+        <form action="" method="POST"  onsubmit="return isValid()">
             <input type="hidden" name="exam_id" value="{{$qnaExams[0]['id']}}"/>
-            <h3 class="text-primary text-capitalize mt-5 mb-5"> {{ $message }}</h3> 
-
+           
             <p class="text-warning"> Answer all questions, choose only one correct Answer
                 @php
-                $qcount = 1;  
                 $options = ['A', 'B', 'C', 'D'];
             @endphp
 <div>
@@ -49,5 +52,5 @@
         <h3 class="text-danger text-center"> {{ $message }}</h3> 
     @endif
 </div>
-
+</div>
 @endsection

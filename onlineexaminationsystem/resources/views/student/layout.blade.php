@@ -167,13 +167,24 @@
             $('#ans_'+no).val($(this).val());
         })
     })
+    function isValid() {
+    var result = true;
+    var qlength = parseInt('{{$qcount}}') - 1;
+    $('.error_msg').remove();
 
-    function isValid(){
-        var result = true;
-        var qlength = parseInt('{{$qcount}}')-1;
+    for (let i = 1; i <= qlength; i++) {
+        if ($('#ans_' + i).val() == "") {
+            result = false;
+            $('#ans_' + i).parent().append('<span style="color:red;" class="error_msg">Please select answer</span>');
 
-        return result;
+            setTimeout(() => {
+                $('.error_msg').remove();
+            }, 3000);
+        }
     }
+    return result;
+}
+
  </script>
 </body>
 
