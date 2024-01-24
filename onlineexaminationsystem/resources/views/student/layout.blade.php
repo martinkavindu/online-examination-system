@@ -159,33 +159,38 @@
         });
     </script>
 
- <script>
-    $(document).ready (function(){
-
-        $('.select_ans').click(function(){
-            var no =$(this).attr('data-id');
-            $('#ans_'+no).val($(this).val());
-        })
-    })
-    function isValid() {
-    var result = true;
-    var qlength = parseInt('{{$qcount}}') - 1;
-    $('.error_msg').remove();
-
-    for (let i = 1; i <= qlength; i++) {
-        if ($('#ans_' + i).val() == "") {
-            result = false;
-            $('#ans_' + i).parent().append('<span style="color:red;" class="error_msg">Please select answer</span>');
-
-            setTimeout(() => {
-                $('.error_msg').remove();
-            }, 3000);
+<script >
+    $(document).ready(function () {
+        if (typeof qcount === 'undefined') {
+            var qcount = $('script[data-qcount]').data('qcount');
         }
-    }
-    return result;
-}
 
- </script>
+        $('.select_ans').click(function () {
+            var no = $(this).attr('data-id');
+            $('#ans_' + no).val($(this).val());
+        });
+    });
+
+    function isValid() {
+        var result = true;
+        data-qcount=$qcount
+        var qlength = parseInt(qcount) - 1;
+        $('.error_msg').remove();
+
+        for (let i = 1; i <= qlength; i++) {
+            if ($('#ans_' + i).val() == "") {
+                result = false;
+                $('#ans_' + i).parent().append('<span style="color:red;" class="error_msg">Please select answer</span>');
+
+                setTimeout(() => {
+                    $('.error_msg').remove();
+                }, 3000);
+            }
+        }
+        return result;
+    }
+</script>
+
 </body>
 
 </html>

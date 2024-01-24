@@ -9,7 +9,7 @@
     
     @if ($success == true)
         @if (count($qnaExams) > 0)
-        <form action="" method="POST"  onsubmit="return isValid()">
+        <form action="" onsubmit="return isValid()">
             <input type="hidden" name="exam_id" value="{{$qnaExams[0]['id']}}"/>
            
             <p class="text-warning"> Answer all questions, choose only one correct Answer
