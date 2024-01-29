@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\exam;
 use App\Models\QnaExam;
+use App\Models\ExamAttempt;
+use App\Models\ExamAnswer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExamController extends Controller
 {
@@ -34,4 +37,31 @@ class ExamController extends Controller
         }
     }
       
+    public function examSubmit(Request $request){
+
+     $attempt_id = ExamAttempt::insertGetId(
+            [
+                'exam_id' =>$request->exam_id,
+                'user_id' =>Auth::user()->id
+            ]
+            );
+            $qcount = count($request->q);
+            if($qcount >0){
+         
+                for ($i = 0; $i < $qcount; $i++) {
+                    $answerId = request()->input('ans_' . ($i + 1));
+                
+                    // Check if the answer is not null
+                    if ($answerId !== null) {
+                        ExamAnswer::insert([
+                            'attempt_id' => $attempt_id,
+                            'question_id' => $request->q[$i],
+                            'answer_id' => $answerId,
+                        ]);
+                    }
+                }
+                
+            }
+            return view('thank_you');
+    }
 }    

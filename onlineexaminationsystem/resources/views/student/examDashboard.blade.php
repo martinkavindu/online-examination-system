@@ -9,7 +9,8 @@
     
     @if ($success == true)
         @if (count($qnaExams) > 0)
-        <form action="" onsubmit="return isValid()">
+        <form action="{{route('examsubmit')}}" method="POST" onsubmit="return isValid()">
+            @csrf
             <input type="hidden" name="exam_id" value="{{$qnaExams[0]['id']}}"/>
            
             <p class="text-warning"> Answer all questions, choose only one correct Answer
@@ -30,7 +31,7 @@
 
                     @foreach ($shuffledAnswers as $index => $answer)
                         <li class="text-white">({{ $options[$index] }}). {{ $answer->answer }}
-                            <input type="radio" name="radio_{{$qcount-1}}" data-id="{{$qcount-1}}" value="{{$answer->id}}" class="select_ans"/>
+                            <input type="radio" name="radio_{{$qcount-1}}" data-id="{{$qcount-1}}" value="{{$answer->id}}" class="select_ans" required/>
                         
                         </li>
                      
