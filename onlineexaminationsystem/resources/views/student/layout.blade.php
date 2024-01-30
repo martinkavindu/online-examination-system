@@ -172,6 +172,7 @@
     });
 
     function isValid() {
+        console.log('Function triggered!');
         var result = true;
         data-qcount=$qcount
         var qlength = parseInt(qcount) - 1;

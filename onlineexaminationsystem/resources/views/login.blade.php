@@ -19,7 +19,7 @@
   
   @if (Session::has('error'))
 
-  <p style="color: red"> {{Session::has('error')}} </p>   
+  <p style="color: red"> Incorrect email or password </p>   
   @endif
     <form action="{{route('userlogin')}}" method="POST" >
 

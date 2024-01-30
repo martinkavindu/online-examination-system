@@ -48,20 +48,15 @@ class ExamController extends Controller
             $qcount = count($request->q);
             if($qcount >0){
          
-                for ($i = 0; $i < $qcount; $i++) {
-                    $answerId = request()->input('ans_' . ($i + 1));
-                
-                    // Check if the answer is not null
-                    if ($answerId !== null) {
-                        ExamAnswer::insert([
-                            'attempt_id' => $attempt_id,
-                            'question_id' => $request->q[$i],
-                            'answer_id' => $answerId,
-                        ]);
-                    }
+                for($i=0; $i<$qcount;$i++){
+
+                    ExamAnswer::insert([
+                        'attempt_id'=>$attempt_id,
+                        'question_id'=>$request->q[$i],
+                        'answer_id' => request()->input('ans_'.($i+1))
+                    ]);
                 }
-                
             }
-            return view('thank_you');
+            return view('student.thank_you');
     }
 }    

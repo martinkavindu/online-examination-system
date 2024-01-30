@@ -12,7 +12,7 @@
   @if($errors->any())
 
   @foreach ($errors->all() as $item)
-      <p style="color: red;">{{$errors}}</p>
+      <p style="color: red;">{{$item}}</p>
   @endforeach
   @endif
     <form action="{{route('studentregister')}}" method="POST" >
@@ -41,10 +41,10 @@
       </div>
     </form>
 
-    @if (Session::has('success'))
+    {{-- @if (Session::has('success'))
 
     <p style="color: green;"> {{Session::has('success')}} </p>   
-    @endif
+    @endif --}}
   </div>
 
 
