@@ -168,6 +168,23 @@
             var no = $(this).attr('data-id');
             $('#ans_' + no).val($(this).val());
         });
+        var time = @json($time);
+        $('.time').text(time[0]+':'+time[1]+':00 left time');
+        var seconds = 60;
+        var hours = time[0];
+        var minutes = time[1];
+
+        setInterval(() => {
+            if(seconds <=0){
+
+                minutes--;
+                seconds = 60;
+            }
+            $('.time').text(hours+':'+minutes+':'+seconds+'left time');
+
+            seconds--;
+            
+        }, 1000);
     });
 
     function isValid() {

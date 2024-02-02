@@ -2,6 +2,10 @@
 
 
 @section('content')
+
+@php
+    $time = explode(':', $qnaExams[0]['time']);
+@endphp
 <div class="container">
 
     <h3 class="text-white">  Welcome,   <i class="fa-regular fa-user pe-2"></i>  {{Auth::user()->name}} </h3> 
@@ -10,6 +14,8 @@
     
     @if ($success == true)
         @if (count($qnaExams) > 0)
+        <h3 class="text-danger text-end time" colspan="8">{{ $qnaExams[0]['time'] }}Hrs</h3>
+
         <form action="{{route('examsubmit')}}" method="POST" onsubmit="return isValid()">
             @csrf
             <input type="hidden" name="exam_id" value="{{$qnaExams[0]['id']}}"/>
