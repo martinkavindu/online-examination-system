@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <script src="{{asset('js/script.js')}}" data-qcount="{{ $qcount ?? 0 }}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
       <link rel="stylesheet" href="{{asset('css/style.css')}}">
@@ -159,11 +159,10 @@
         });
     </script>
 
-<script >
+<script>
     $(document).ready(function () {
-        if (typeof qcount === 'undefined') {
-            var qcount = $('script[data-qcount]').data('qcount');
-        }
+
+        var qcount = $('script[data-qcount]').data('qcount');
 
         $('.select_ans').click(function () {
             var no = $(this).attr('data-id');
@@ -172,9 +171,8 @@
     });
 
     function isValid() {
-        console.log('Function triggered!');
         var result = true;
-        data-qcount=$qcount
+
         var qlength = parseInt(qcount) - 1;
         $('.error_msg').remove();
 
@@ -191,6 +189,7 @@
         return result;
     }
 </script>
+
 
 </body>
 

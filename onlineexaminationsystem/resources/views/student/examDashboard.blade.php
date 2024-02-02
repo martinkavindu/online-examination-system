@@ -1,4 +1,5 @@
-@extends('student.layout')
+@extends('student.layout', ['qcount' => $qcount])
+
 
 @section('content')
 <div class="container">
