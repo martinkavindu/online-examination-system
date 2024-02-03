@@ -12,11 +12,12 @@
     <h3 class="text-primary text-capitalize mt-5"> {{ $message }}</h3> 
     @php $qcount =1; @endphp
     
+    
     @if ($success == true)
         @if (count($qnaExams) > 0)
         <h3 class="text-danger text-end time" colspan="8">{{ $qnaExams[0]['time'] }}Hrs</h3>
 
-        <form action="{{route('examsubmit')}}" method="POST" onsubmit="return isValid()">
+        <form action="{{route('examsubmit')}}" method="POST" onsubmit="return isValid()" id="exam_form">
             @csrf
             <input type="hidden" name="exam_id" value="{{$qnaExams[0]['id']}}"/>
            
@@ -61,4 +62,6 @@
     @endif
 </div>
 </div>
+
+
 @endsection
