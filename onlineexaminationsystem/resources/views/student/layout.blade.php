@@ -168,42 +168,8 @@
             var no = $(this).attr('data-id');
             $('#ans_' + no).val($(this).val());
         });
-        var time = @json($time);
-        $('.time').text(time[0]+':'+time[1]+':00 left time');
-        var seconds = 60;
-        var hours = time[0];
-        var minutes = time[1];
 
-       var  timer = setInterval(() => {
-
-
-        if(hours == 0 && minutes == 0 && seconds == 0){
-            clearInterval(timer);
-
-            $('#exam_form').submit();
-
-            
-        }
-            if(seconds <=0){
-
-                minutes--;
-                seconds = 60;
-            }
-
-            if(minutes <= 0){
-                hours --;
-                minutes = 59;
-                secomds = 60;
-            }
-
-            let tempHours = hours.toString().length > 1? hours:'0'+hours;
-            let tempMinutes = minutes.toString().length > 1? minutes:'0'+hours;
-            let tempSeconds = seconds.toString().length > 1? seconds:'0'+hours;
-            $('.time').text(tempHours+':'+tempMinutes+':'+tempSeconds+ 'left time');
-
-            seconds--;
-            
-        }, 1000);
+       
     });
 
     function isValid() {
@@ -229,6 +195,46 @@
 
 </body>
 
-</html>
-    
+{{-- </html>
+<script>
+var time = @json($time);
+$('.time').text(time[0]+':'+time[1]+':00 left time');
+var seconds = 60;
+var hours = time[0];
+var minutes = time[1];
 
+var  timer = setInterval(() => {
+
+
+if(hours == 0 && minutes == 0 && seconds == 0){
+    clearInterval(timer);
+
+
+
+
+    $('#exam_form').submit();
+
+    
+}
+    if(seconds <=0){
+
+        minutes--;
+        seconds = 60;
+    }
+
+    if(minutes <= 0 && hours != 0){
+        hours --;
+        minutes = 59;
+        secomds = 60;
+    }
+
+    let tempHours = hours.toString().length > 1? hours:'0'+hours;
+    let tempMinutes = minutes.toString().length > 1? minutes:'0'+hours;
+    let tempSeconds = seconds.toString().length > 1? seconds:'0'+hours;
+    $('.time').text(tempHours+':'+tempMinutes+':'+tempSeconds+ 'left time');
+
+    seconds--;
+    
+}, 1000);
+
+</script> --}}
