@@ -11,7 +11,7 @@
     <h3 class="text-white">Welcome, <i class="fa-regular fa-user pe-2"></i>{{ Auth::user()->name }}</h3>
 
     <h6 class="text-white"> Subject: {{$qnaExams[0]['subject_name']}}  </h6>
-    <h3 class="text-primary text-capitalize">{{ $message }}</h3>
+    <h3 class="text-primary text-capitalize">{{$qnaExams[0]['exam_name']}}</h3>
 
     @php $qcount = 1; @endphp
 
