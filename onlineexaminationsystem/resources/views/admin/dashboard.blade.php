@@ -60,7 +60,10 @@
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="{{route('allexam')}}" class="sidebar-link">All </a>
+                                <a href="{{route('allexam')}}" class="sidebar-link">All </a> </li>
+
+                                <li class="sidebar-item">
+                                    <a href="{{route('marks')}}" class="sidebar-link"> <i class="fa fa-check" aria-hidden="true"></i>  Marks</a> </li>
                         </ul>
                     </li>
                     <li class="sidebar-item">

@@ -343,7 +343,12 @@ return view('exam.edit_exam',compact('exams'));
 
     return view('exam.allquestions', compact('exam', 'questions'));
 }
+//marks
 
+public function loadMarks(){
+
+    $exams = exam::with('getQnaExam')->get();
+    return view('admin.marks',compact('exams'));
         
-    
+}
 }
