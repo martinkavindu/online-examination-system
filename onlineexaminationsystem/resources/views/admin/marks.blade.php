@@ -39,7 +39,7 @@
     <td>{{$exam->marks}}</td>
     <td>{{count($exam->getQnaExam) * $exam->marks}}</td>
 
-    <td><button class="btn btn-warning Editmarks" data-id="{{$exam->id}}">Edit</button></td>
+    <td><button class="btn btn-warning EditMarks" data-id="{{$exam->id}}"data-marks ="{{$exam->marks}}" data-totalq="{{ count($exam->getQnaExam)}}" data-bs-toggle="modal" data-bs-target="#myModal">Edit</button></td>
 </tr>
                     
                 @endforeach
@@ -53,5 +53,56 @@
 
     </div>
 </div>
+    <!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">update marks</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <form>
+        <div class="modal-body">
+
+
+  <form>
+    @csrf
+    <div class="row">
+
+        <div class="col-sm-3">
+<label> Marks/Q </label>
+        </div>
+        <div class="col-sm-6">
+         <input type="hidden" name="exam_id" id="exam_id"> 
+        <input type="number" class="form-control mb-3" name="marks"placeholder="enter marks/Q" required>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-sm-3">
+<label> Total Marks </label>
+        </div>
+        <div class="col-sm-6">
     
+        <input type="text"  class="form-control" disabled placeholder="Total marks" id="tmarks" required>
+        </div>
+      </div>
+    
+        </div>
+  
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+
+        <button type="submit" class="btn btn-primary"> Update marks </button>
+        </div>
+  
+      </div>
+    </form>
+    </div>
 @endsection
