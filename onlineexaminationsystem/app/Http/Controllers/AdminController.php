@@ -7,6 +7,7 @@ use App\Models\Subjects;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\exam;
+use App\Models\ExamAttempt;
 use App\Models\QnaExam;
 use App\Models\User;
 use App\Imports\QnaImport;
@@ -369,4 +370,13 @@ public function Updatemarks(Request $request){
         
     }
 }
+
+public function  reviewExam (){
+
+    $attempts= ExamAttempt::with(['user','exam'])->orderBy('id')->get();
+
+return view('admin.examreview',compact('attempts'));
+
+}
+
 }

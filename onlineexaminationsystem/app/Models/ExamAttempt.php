@@ -14,4 +14,13 @@ class ExamAttempt extends Model
         'exam_id',
         'user_id'
     ];
+
+    public function user(){
+        return $this->hasOne(User::class,'id','user_id');
+    }
+public function exam(){
+    return $this->hasOne(exam::class,'id','exam_id');
+}
+
+
 }

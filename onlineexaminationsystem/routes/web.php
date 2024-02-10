@@ -82,6 +82,10 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::get('/admin/marks',[AdminController::class,'loadMarks'])->name('marks');
     Route::post('/update/marks',[AdminController::class,'Updatemarks'])->name('updatemarks');
 
+    //review marks
+    Route::post('/admin/review',[AdminController::class,'reviewExam'])->name('reviewexams');
+
+
 // add questions to exams 
 // web.php
 Route::get('/questions/{exam_id}', [AdminController::class, 'Questions'])->name('questions');
