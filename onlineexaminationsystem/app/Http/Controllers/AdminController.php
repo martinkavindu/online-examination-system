@@ -359,6 +359,10 @@ public function Updatemarks(Request $request){
         exam::where('id',$request->exam_id)->update([
             'marks'=>$request->marks
         ]);
+
+        return response()->json(['success'=>TRUE,'message'=>'exam marks updated successfully']);
+
+        
     } catch (\Exception $e) {
 
         return response()->json(['success'=>FALSE,'message'=>"failed to update exam marks"]);

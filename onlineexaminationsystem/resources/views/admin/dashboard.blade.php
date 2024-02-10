@@ -303,7 +303,14 @@
             method:'POST',
             data:fornData,
             success:function(data){
-                
+
+                if(data.success == true){
+                    location.reload();
+                }else
+                {
+                    alert('error occured')
+                }
+
             }
         })
       })
