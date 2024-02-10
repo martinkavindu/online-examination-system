@@ -80,6 +80,7 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
 
     //add marks
     Route::get('/admin/marks',[AdminController::class,'loadMarks'])->name('marks');
+    Route::post('/update/marks',[AdminController::class,'Updatemarks'])->name('updatemarks');
 
 // add questions to exams 
 // web.php

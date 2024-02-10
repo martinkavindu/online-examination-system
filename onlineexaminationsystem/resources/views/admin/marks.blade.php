@@ -39,7 +39,7 @@
     <td>{{$exam->marks}}</td>
     <td>{{count($exam->getQnaExam) * $exam->marks}}</td>
 
-    <td><button class="btn btn-warning EditMarks" data-id="{{$exam->id}}"data-marks ="{{$exam->marks}}" data-totalq="{{ count($exam->getQnaExam)}}" data-bs-toggle="modal" data-bs-target="#myModal">Edit</button></td>
+    <td><button class="btn btn-warning editMarks" data-id="{{$exam->id}}"data-marks ="{{$exam->marks}}" data-totalq="{{ count($exam->getQnaExam)}}" data-bs-toggle="modal" data-bs-target="#myModal">Edit</button></td>
 </tr>
                     
                 @endforeach
@@ -65,11 +65,10 @@
         </div>
   
         <!-- Modal body -->
-        <form>
+        <form id="editMarks">
         <div class="modal-body">
 
 
-  <form>
     @csrf
     <div class="row">
 
@@ -78,7 +77,8 @@
         </div>
         <div class="col-sm-6">
          <input type="hidden" name="exam_id" id="exam_id"> 
-        <input type="number" class="form-control mb-3" name="marks"placeholder="enter marks/Q" required>
+        <input type="text" class="form-control mb-3" name="marks"placeholder="enter marks/Q" id="marks"
+       required>
         </div>
       </div>
       <div class="row">
@@ -105,4 +105,5 @@
       </div>
     </form>
     </div>
+
 @endsection

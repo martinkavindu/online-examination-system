@@ -269,6 +269,46 @@
 </script> -->
 
 //show answers code
+<script>
+
+    $(document).ready(function(){
+  
+      var totalQna = 0;
+  
+      $('.editMarks').click(function(){
+  
+        var exam_id = $(this).attr('data-id');
+        var marks = $(this).attr('data-marks');
+        var totalq = $(this).attr('data-totalq');
+  
+        $('#marks').val(marks);
+         $('#exam_id').val(exam_id);
+         $('#tmarks').val(marks*totalq);
+         totalQna = totalq;
+  
+      });
+  
+      $('#marks').keyup(function(){
+  
+      $('#tmarks').val($(this).val() * totalQna);
+  
+      });
+      $('#editMarks').submit(function(event){
+        event.preventDefault();
+
+        var fornData = $(this).serialize();
+        $.ajax({
+
+            url:"{{route('updatemarks')}}",
+            method:'POST',
+            data:fornData,
+            success:function(data){
+                
+            }
+        })
+      })
+    })
+  </script>
  
 </body>
 

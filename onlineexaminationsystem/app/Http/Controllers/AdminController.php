@@ -351,4 +351,18 @@ public function loadMarks(){
     return view('admin.marks',compact('exams'));
         
 }
+
+public function Updatemarks(Request $request){
+
+    try {
+
+        exam::where('id',$request->exam_id)->update([
+            'marks'=>$request->marks
+        ]);
+    } catch (\Exception $e) {
+
+        return response()->json(['success'=>FALSE,'message'=>"failed to update exam marks"]);
+        
+    }
+}
 }
