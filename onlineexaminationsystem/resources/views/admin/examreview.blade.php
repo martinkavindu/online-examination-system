@@ -32,7 +32,7 @@ $x = 1
 @foreach ($attempts as $attempt)
 
 <tr>
-    <td> {{$++}} </td>
+    <td> {{$x++}} </td>
     <td>{{$attempt->user->name}}</td>
     <td>{{$attempt->exam->exam_name}}</td>
 
@@ -48,7 +48,7 @@ $x = 1
     <td> 
         @if ($attempt->status == 0)
 
-  <a href="#"> Review Approve</a>
+  <a href="#"> Review & Approve</a>
             
         @else
             <span class="text-success">Completed</span>

@@ -66,7 +66,7 @@
                                     <a href="{{route('marks')}}" class="sidebar-link"> <i class="fa fa-check" aria-hidden="true"></i>  Marks</a> </li>
 
                                     <li class="sidebar-item">
-                                        <a href="{{route('reviewmarks')}}" class="sidebar-link"> <i class="fa fa-file-text-o" aria-hidden="true"></i> Exam Review</a> </li>
+                                        <a href="{{route('reviewexams')}}" class="sidebar-link"> <i class="fa fa-file-text-o" aria-hidden="true"></i> Exam Review</a> </li>
                         </ul>
                     </li>
                     <li class="sidebar-item">
