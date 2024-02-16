@@ -11,6 +11,7 @@ use App\Models\ExamAttempt;
 use App\Models\QnaExam;
 use App\Models\User;
 use App\Imports\QnaImport;
+use App\Imports\ExamAnswer;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
 use Mail;
@@ -366,8 +367,8 @@ public function Updatemarks(Request $request){
         
     } catch (\Exception $e) {
 
-        return response()->json(['success'=>FALSE,'message'=>"failed to update exam marks"]);
-        
+        return response()->json(['success'=>FALSE,'message'=>"failed to update exam marks"]); 
+       
     }
 }
 
@@ -377,6 +378,21 @@ public function  reviewExam (){
 
 return view('admin.examreview',compact('attempts'));
 
+}
+
+public function reviewQna(Request $request){
+
+  try {
+
+    $attemptData = ExamAnswer::where('attempt_id',$request->attempt_id)->with(['question','answers'])->get();
+    return response()->json(['success'=>true,'data'=>$attemptData]);
+    
+
+  } catch (\Exception $e) {
+
+    return response()->json(['success'=>FALSE,'message'=>"failed to update exam marks"]); 
+ 
+  }
 }
 
 }

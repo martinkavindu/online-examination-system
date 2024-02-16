@@ -48,7 +48,7 @@ $x = 1
     <td> 
         @if ($attempt->status == 0)
 
-  <a href="#"> Review & Approve</a>
+  <a href="#" class="reviewExam" data-id ="{{$attempt->id}}" data-bs-toggle="modal" data-bs-target="#reviewmarks"> Review & Approve</a>
             
         @else
             <span class="text-success">Completed</span>
@@ -74,5 +74,35 @@ $x = 1
 
     </div>
 </div>
+
+
+
+<div class="modal" id="reviewmarks">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Review exam</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+
+        <form action="" id="reviewForm">
+        <div class="modal-body review-exam">
+          loading ..
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="submit"  class="btn btn-primary">Approve</button>
+        </div>
+        </form>
+      </div>
+    </div>
+
     
 @endsection
+
