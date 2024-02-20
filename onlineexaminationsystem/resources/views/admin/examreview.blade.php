@@ -126,7 +126,10 @@ console.log(data);
 for(let i = 0; i < data.length;i++){
 
   let isCorrect = '<span style="color:red;" class = "fa fa-close">  </span>'
+ if(data[i]['answers']['is_correct'] ==1){
+  let isCorrect = '<span style="color:green" class = "fa fa-checked">  </span>'
 
+ }
   let answer =   data[i]['answers']['answer'];
 
   html+=`
@@ -134,7 +137,7 @@ for(let i = 0; i < data.length;i++){
 
   <div class = "col-sm-12">
     <h6> Q(`+(i+1)+`). `+data[i]['question']['question']`</h6>
-    <p> Asw:-</p>
+    <p> Asw:-`+answer+` `+isCorrect+` </p>
   </div>
 
   `
