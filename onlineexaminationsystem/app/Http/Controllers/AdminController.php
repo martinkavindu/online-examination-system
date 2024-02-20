@@ -11,7 +11,7 @@ use App\Models\ExamAttempt;
 use App\Models\QnaExam;
 use App\Models\User;
 use App\Imports\QnaImport;
-use App\Imports\ExamAnswer;
+use App\Models\ExamAnswer;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
 use Mail;
