@@ -97,12 +97,72 @@ $x = 1
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          <button type="submit"  class="btn btn-primary">Approve</button>
+          <button type="submit" class="btn btn-primary">Approve</button>
         </div>
         </form>
       </div>
     </div>
 
+    <script>
+$(document).ready(function(){
+
+  $('reviewExam').click(function(){
+
+    var id = $(this).attr('data_id');
+
+    $.ajax({
+
+      url : "{{'reviewQna'}}",
+      type : 'GET',
+      data : {attempt_id:id},
+      success:function(){
+        var html = '';
+if(data.success == true){
+var data = data.data;
+
+if(data.length > 0){
+console.log(data);
+
+for(let i = 0; i < data.length;i++){
+
+  let isCorrect = '<span style="color:red;" class = "fa fa-close">  </span>'
+
+  let answer =   data[i]['answers']['answer'];
+
+  html+=`
+<div class = "row">
+
+  <div class = "col-sm-12">
+    <h6> Q(`+(i+1)+`). `+data[i]['question']['question']`</h6>
+    <p> Asw:-</p>
+  </div>
+
+  `
+}
+
+}else{
+
+  html +=`<h6>Student not attempted any Questions!</h6>
+  <p> if you approve this exam student will fail </p>`
+
+}
+
+}else{
+  html += '<p> Having some server issue';
+
+
+}
+$('.review-exam').html(html);
+
+      }
+
+    })
+
+  });
+});
+
+    </script>
     
+
 @endsection
 
