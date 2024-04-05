@@ -323,13 +323,13 @@
 
       $('.reviewExam').click(function(){
 
-var id = $(this).attr('data_id');
+var attempt_id = $(this).attr('data_id');
 
 $.ajax({
 
   url : "{{'reviewQna'}}",
   type : 'GET',
-  data : {attempt_id:id},
+  data : {attempt_id:attempt_id},
   success:function(data){ 
     var html = '';
 
@@ -337,7 +337,7 @@ $.ajax({
       var responseData = data.data; 
 
       if(responseData.length > 0){
-        console.log(responseData);
+      
 
         for(let i = 0; i < responseData.length; i++){
           let isCorrect = '<span style="color:red;" class="fa fa-close">  </span>'; 

@@ -385,6 +385,7 @@ public function reviewQna(Request $request){
   try {
 
     $attemptData = ExamAnswer::where('attempt_id',$request->attempt_id)->with(['question','answers'])->get();
+
     return response()->json(['success'=>true,'data'=>$attemptData]);
     
 

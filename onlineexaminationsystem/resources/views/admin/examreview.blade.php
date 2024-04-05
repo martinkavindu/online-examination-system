@@ -36,6 +36,7 @@ $x = 1
     <td>{{$attempt->user->name}}</td>
     <td>{{$attempt->exam->exam_name}}</td>
 
+
     <td> 
         @if ($attempt->status == 0)
 
@@ -43,13 +44,14 @@ $x = 1
             
         @else
             <span class="text-success">Approved</span>
+         
         @endif
     </td>
     <td> 
         @if ($attempt->status == 0)
 
-  <a href="#" class="reviewExam" data-id ="{{$attempt->id}}" data-bs-toggle="modal" data-bs-target="#reviewmarks"> Review & Approve</a>
-            
+        <a href="#" class="reviewExam" data-id="{{$attempt->id}}" data-bs-toggle="modal" data-bs-target="#reviewmarks">Review & Approve</a>
+           
         @else
             <span class="text-success">Completed</span>
         @endif
