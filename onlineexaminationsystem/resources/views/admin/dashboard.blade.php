@@ -321,59 +321,71 @@
         });
       });
 
-      $('.reviewExam').click(function(){
-
-var attempt_id = $(this).attr('data_id');
-
-$.ajax({
-
-  url : "{{'reviewQna'}}",
-  type : 'GET',
-  data : {attempt_id:attempt_id},
-  success:function(data){ 
-    var html = '';
-
-    if(data.success == true){
-      var responseData = data.data; 
-
-      if(responseData.length > 0){
-      
-
-        for(let i = 0; i < responseData.length; i++){
-          let isCorrect = '<span style="color:red;" class="fa fa-close">  </span>'; 
-
-          if(responseData[i]['answers']['is_correct'] == 1){
-            isCorrect = '<span style="color:green" class="fa fa-checked">  </span>';
-          }
-
-          let answer = responseData[i]['answers']['answer'];
-
-          html += `
-            <div class="row">
-              <div class="col-sm-12">
-                <h6> Q(`+(i+1)+`). `+responseData[i]['question']['question']+`</h6>
-                <p> Asw:-`+answer+` `+isCorrect+` </p>
-              </div>
-            </div>
-          `;
-        }
-      } else {
-        html += `<h6>Student not attempted any Questions!</h6>
-                 <p> if you approve this exam student will fail </p>`;
-      }
-    } else {
-      html += '<p> Having some server issue';
-    }
-
-    $('.review-exam').html(html);
-  }
-
-});
-});
 
 
     });
   </script>
+
+<script>
+  $(document).ready(function(){
+   
+   $('.reviewExam').click(function(){
+ 
+ var attempt_id = $(this).attr('data_id');
+ 
+ console.log(attempt_id);
+ 
+ $.ajax({
+ 
+   url : "{{'reviewQna'}}",
+   type : 'GET',
+   data : {attempt_id:attempt_id},
+   success:function(data){ 
+
+     var html = '';
+ 
+     if(data.success == true){
+       var responseData = data.data; 
+ 
+       if(responseData.length > 0){
+       
+ 
+         for(let i = 0; i < responseData.length; i++){
+           let isCorrect = '<span style="color:red;" class="fa fa-close">  </span>'; 
+ 
+           if(responseData[i]['answers']['is_correct'] == 1){
+             isCorrect = '<span style="color:green" class="fa fa-checked">  </span>';
+           }
+ 
+           let answer = responseData[i]['answers']['answer'];
+ 
+           html += `
+             <div class="row">
+               <div class="col-sm-12">
+                 <h6> Q(`+(i+1)+`). `+responseData[i]['question']['question']+`</h6>
+                 <p> Asw:-`+answer+` `+isCorrect+` </p>
+               </div>
+             </div>
+           `;
+         }
+       } else {
+         html += `<h6>Student not attempted any Questions!</h6>
+                  <p> if you approve this exam student will fail </p>`;
+       }
+     } else {
+       html += '<p> Having some server issue';
+     }
+ 
+     $('.review-exam').html(html);
+   }
+ 
+ });
+ });
+ 
+  });
+ 
+ </script>
+ 
         
  
 </body>
