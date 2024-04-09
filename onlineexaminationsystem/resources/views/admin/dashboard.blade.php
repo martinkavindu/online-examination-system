@@ -331,7 +331,7 @@
    
    $('.reviewExam').click(function(){
  
- var attempt_id = $(this).attr('data_id');
+ var attempt_id = $(this).attr('data-id');
  
  console.log(attempt_id);
  
@@ -354,7 +354,7 @@
            let isCorrect = '<span style="color:red;" class="fa fa-close">  </span>'; 
  
            if(responseData[i]['answers']['is_correct'] == 1){
-             isCorrect = '<span style="color:green" class="fa fa-checked">  </span>';
+             isCorrect = '<span style="color:green;" class="fa fa-checked"> ✔ </span>';
            }
  
            let answer = responseData[i]['answers']['answer'];
