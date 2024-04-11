@@ -82,10 +82,10 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::get('/admin/marks',[AdminController::class,'loadMarks'])->name('marks');
     Route::post('/update/marks',[AdminController::class,'Updatemarks'])->name('updatemarks');
 
-    //review marks
+    //review markss
     Route::get('/admin/review',[AdminController::class,'reviewExam'])->name('reviewexams');
     Route::get('/admin/reviewQna',[AdminController::class,'reviewQna'])->name('reviewQna');
-
+    Route::post('/approve/qna',[AdminController::class,'approveQna'])->name('approveqna');
     
 // add questions to exams 
 // web.php

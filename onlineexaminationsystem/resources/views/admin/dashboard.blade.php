@@ -332,8 +332,10 @@
    $('.reviewExam').click(function(){
  
  var attempt_id = $(this).attr('data-id');
+
+ $('#attempt_id').val(attempt_id);
  
- console.log(attempt_id);
+//  console.log(attempt_id);
  
  $.ajax({
  
@@ -382,6 +384,28 @@
  });
  });
  
+ //approve 
+
+ $('#reviewForm').submit(function(event){
+event.preventDefault();
+var formData = $(this).serialize();
+
+$.ajax({
+  url:"{{route('approveqna')}}",
+  type:"POST",
+  success:function(data){
+
+    console.log(data);
+    if(data.success == true){
+      location.reload()
+    }else{
+      alert(data.msg)
+    }
+
+  }
+})
+
+ })
   });
  
  </script>

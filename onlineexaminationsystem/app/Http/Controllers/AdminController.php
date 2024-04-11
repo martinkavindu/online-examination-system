@@ -396,4 +396,37 @@ public function reviewQna(Request $request){
   }
 }
 
+public function approveQna(Request $request){
+try {
+  $attempt_id = $request->attempt_id;
+  $examData = ExamAttempt::where('id',$attempt_id)->with('exam')->get();
+    $marks = $examData[0]['exam']['marks'];
+
+    $attemptData =  ExamAnswer::where('attempt_id',$attempt_id)->with('answers')->get();
+
+    $totalMarks = 0;
+
+    if(count($attemptData)>0){
+
+        foreach($attemptData as $attempt){
+
+            if($attempt->answers->is_correct == 1){
+                $totalMarks +=$marks;
+            }
+        }
+    }
+
+    ExamAttempt::where('id',$attempt_id)->update([
+    'status'=>1,
+    'marks' =>$totalMarks
+    ]);
+
+    return response()->json(['success'=>true,'msg'=>'Approved successfully','data'=>$attemptData]);
+} catch (\Exception $e) {
+    return response()->json(['success'=>FALSE,'message' =>"failed"]);
+   
+}
+
+}
+
 }

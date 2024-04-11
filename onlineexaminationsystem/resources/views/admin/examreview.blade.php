@@ -92,6 +92,9 @@ $x = 1
         <!-- Modal body -->
 
         <form action="" id="reviewForm">
+          @csrf
+
+          <input type="hidden"  id="attempt_id" name="attempt_id"/>
         <div class="modal-body review-exam">
           loading ..
         </div>
