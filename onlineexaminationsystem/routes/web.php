@@ -85,7 +85,7 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     //review markss
     Route::get('/admin/review',[AdminController::class,'reviewExam'])->name('reviewexams');
     Route::get('/admin/reviewQna',[AdminController::class,'reviewQna'])->name('reviewQna');
-    Route::post('/approve/qna',[AdminController::class,'approveQna'])->name('approveqna');
+    Route::post('/approved/qna',[AdminController::class,'approvedQ'])->name('approvedQ');
     
 // add questions to exams 
 // web.php

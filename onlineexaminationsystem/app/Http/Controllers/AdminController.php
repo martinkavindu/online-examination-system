@@ -396,13 +396,13 @@ public function reviewQna(Request $request){
   }
 }
 
-public function approveQna(Request $request){
+public function approvedQ(Request $request){
 try {
   $attempt_id = $request->attempt_id;
   $examData = ExamAttempt::where('id',$attempt_id)->with('exam')->get();
     $marks = $examData[0]['exam']['marks'];
 
-    $attemptData =  ExamAnswer::where('attempt_id',$attempt_id)->with('answers')->get();
+    $attemptData =  ExamAnswer::where('attempt_id',$attempt_id)->with(['answers','user'])->get();
 
     $totalMarks = 0;
 
@@ -420,6 +420,19 @@ try {
     'status'=>1,
     'marks' =>$totalMarks
     ]);
+ 
+$url = URL::to('/');
+$data['url'] = $url.'/results';
+$data['name'] = $examData[0]['user']['name'];
+$data['email'] = $examData[0]['user']['email'];
+$data['exam_name'] =$examData[0]['exam']['exam_name'];
+$data['title'] =  $examData[0]['exam']['exam_name'].'Result';
+
+Mail::send('result-mail',['data'=>$data],function($message) use ($data){
+$message->to($data['email'])->subject($data['title']);
+
+}) ;
+
 
     return response()->json(['success'=>true,'msg'=>'Approved successfully','data'=>$attemptData]);
 } catch (\Exception $e) {

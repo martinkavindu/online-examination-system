@@ -386,13 +386,14 @@
  
  //approve 
 
- $('#reviewForm').submit(function(event){
+ $('#approveForm').submit(function(event){
 event.preventDefault();
 var formData = $(this).serialize();
 
 $.ajax({
-  url:"{{route('approveqna')}}",
+  url:"{{route('approvedQ')}}",
   type:"POST",
+  data:formData,
   success:function(data){
 
     console.log(data);
