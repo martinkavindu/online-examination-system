@@ -397,49 +397,44 @@ public function reviewQna(Request $request){
 }
 
 public function approvedQ(Request $request){
-try {
-  $attempt_id = $request->attempt_id;
-  $examData = ExamAttempt::where('id',$attempt_id)->with('exam')->get();
-    $marks = $examData[0]['exam']['marks'];
+    try {
+        $attempt_id = $request->attempt_id;
+        $examData = ExamAttempt::where('id', $attempt_id)->with(['exam','user'])->first();
+        $marks = $examData->exam->marks;
 
-    $attemptData =  ExamAnswer::where('attempt_id',$attempt_id)->with(['answers','user'])->get();
+        $attemptData = ExamAnswer::where('attempt_id', $attempt_id)->with('answers')->get();
 
-    $totalMarks = 0;
-
-    if(count($attemptData)>0){
+        $totalMarks = 0;
 
         foreach($attemptData as $attempt){
-
             if($attempt->answers->is_correct == 1){
-                $totalMarks +=$marks;
+                $totalMarks += $marks;
             }
         }
+
+        ExamAttempt::where('id', $attempt_id)->update([
+            'status' => 1,
+            'marks' => $totalMarks
+        ]);
+
+        $url = URL::to('/');
+        $data['url'] = $url.'/results';
+        $data['name'] = $examData->user->name;
+        $data['email'] = $examData->user->email;
+        $data['marks'] = $totalMarks;
+        $data['exam_name'] = $examData->exam->exam_name;
+        $data['title'] = $examData->exam->exam_name.' Result';
+
+        Mail::send('result-mail', ['data' => $data], function($message) use ($data){
+            $message->to($data['email'])->subject($data['title']);
+        });
+
+        return response()->json(['success' => true, 'msg' => 'Approved successfully', 'data' => $attemptData]);
+    } catch (\Exception $e) {
+        \Log::error('Error approving exam: '.$e->getMessage());
+        return response()->json(['success' => false, 'msg' => 'Failed to approve exam: '.$e->getMessage()]);
     }
-
-    ExamAttempt::where('id',$attempt_id)->update([
-    'status'=>1,
-    'marks' =>$totalMarks
-    ]);
- 
-$url = URL::to('/');
-$data['url'] = $url.'/results';
-$data['name'] = $examData[0]['user']['name'];
-$data['email'] = $examData[0]['user']['email'];
-$data['exam_name'] =$examData[0]['exam']['exam_name'];
-$data['title'] =  $examData[0]['exam']['exam_name'].'Result';
-
-Mail::send('result-mail',['data'=>$data],function($message) use ($data){
-$message->to($data['email'])->subject($data['title']);
-
-}) ;
-
-
-    return response()->json(['success'=>true,'msg'=>'Approved successfully','data'=>$attemptData]);
-} catch (\Exception $e) {
-    return response()->json(['success'=>FALSE,'message' =>"failed"]);
-   
 }
 
-}
 
 }

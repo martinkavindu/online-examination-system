@@ -101,7 +101,7 @@ $x = 1
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Approve</button>
+          <button type="submit" class="btn btn-primary reviewexambtn">Approve</button>
         </div>
         </form>
       </div>

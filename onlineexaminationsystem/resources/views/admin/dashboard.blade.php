@@ -388,6 +388,7 @@
 
  $('#approveForm').submit(function(event){
 event.preventDefault();
+$('.reviewexambtn').html('please wait <i class="fa fa-spinner" aria-hidden="true"></i>')
 var formData = $(this).serialize();
 
 $.ajax({
