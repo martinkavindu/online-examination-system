@@ -301,6 +301,19 @@
       $('#tmarks').val($(this).val() * totalQna);
   
       });
+
+      $('#passmarks').keyup(function(){
+    var tmarks = $('#tmarks').val();
+    var pmarks = $(this).val();
+
+    if (parseFloat(pmarks) >= parseFloat(tmarks)) {
+        $(this).parent().append('<p style="color:red" class="pass-error">Pass mark cannot be more than total marks</p>');
+        setTimeout(() => {
+            $('.pass-error').remove();
+        }, 2000);
+    }
+    });
+
       $('#editMarks').submit(function(event){
         event.preventDefault();
 

@@ -94,7 +94,7 @@
         </div>
       </div>
 
-      <input type="text"  class="form-control" disabled placeholder="pass marks" id="passmarks" name="pass_marks" required> 
+      <input type="text"  class="form-control mt-3" placeholder="pass marks" id="passmarks" name="pass_marks" required> 
     
         </div>
   
