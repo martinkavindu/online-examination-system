@@ -18,6 +18,7 @@
                 <th>Exam name</th>
                 <th> Marks/Q</th>
               <th>Total marks</th>
+              <th>Passing Marks</th>
               <th> Edit</th>
               </tr>
             </thead>
@@ -38,8 +39,9 @@
     <td>{{$exam->exam_name}}</td>
     <td>{{$exam->marks}}</td>
     <td>{{count($exam->getQnaExam) * $exam->marks}}</td>
+    <td>{{$exam->pass_marks}}</td>
 
-    <td><button class="btn btn-warning editMarks" data-id="{{$exam->id}}"data-marks ="{{$exam->marks}}" data-totalq="{{ count($exam->getQnaExam)}}" data-bs-toggle="modal" data-bs-target="#myModal">Edit</button></td>
+    <td><button class="btn btn-warning editMarks" data-id="{{$exam->id}}"data-marks ="{{$exam->marks}}" data-pass = "{{$exam->pass_marks}}" data-totalq="{{ count($exam->getQnaExam)}}" data-bs-toggle="modal" data-bs-target="#myModal">Edit</button></td>
 </tr>
                     
                 @endforeach
@@ -91,6 +93,8 @@
         <input type="text"  class="form-control" disabled placeholder="Total marks" id="tmarks" required>
         </div>
       </div>
+
+      <input type="text"  class="form-control" disabled placeholder="pass marks" id="passmarks" name="pass_marks" required> 
     
         </div>
   

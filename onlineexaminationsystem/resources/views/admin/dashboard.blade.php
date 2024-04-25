@@ -286,9 +286,11 @@
         var exam_id = $(this).attr('data-id');
         var marks = $(this).attr('data-marks');
         var totalq = $(this).attr('data-totalq');
+        var passmark = $(this).attr('data-pass');
   
         $('#marks').val(marks);
          $('#exam_id').val(exam_id);
+         $('#passmarks').val(passmark);
          $('#tmarks').val(marks*totalq);
          totalQna = totalq;
   

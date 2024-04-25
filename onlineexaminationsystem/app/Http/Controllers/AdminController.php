@@ -359,7 +359,8 @@ public function Updatemarks(Request $request){
     try {
 
         exam::where('id',$request->exam_id)->update([
-            'marks'=>$request->marks
+            'marks'=>$request->marks,
+            'pass_marks'=>$request->pass_marks
         ]);
 
         return response()->json(['success'=>TRUE,'message'=>'exam marks updated successfully']);
