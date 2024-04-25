@@ -310,7 +310,7 @@
         $(this).parent().append('<p style="color:red" class="pass-error">Pass mark cannot be more than total marks</p>');
         setTimeout(() => {
             $('.pass-error').remove();
-        }, 2000);
+        }, 3000);
     }
     });
 
