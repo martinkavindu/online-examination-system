@@ -12,8 +12,8 @@
     <strong> Hello {{$data['name']}},</strong> Your exam({{$data['exam_name']}}) review passed,
     so now you can check your Marks.
   </P>
-  <h1> Total marks: <span style="color: green"> {{$data['marks']}}</span></h1>
-
+  {{-- <h1> Total marks: <span style="color: green"> {{$data['marks']}}</span></h1> --}}
+<a href="{{$data[url]}}">click here</a>
 
   <p>Thank you</p>
 </body>

@@ -55,6 +55,13 @@
                        
                     </li>
           
+                    <li class="sidebar-item">
+                        <a href="{{'resulltsdashboard'}}" class="sidebar-link collapsed">
+                            <i class="fa fa-list-alt" aria-hidden="true"></i>
+                   Results
+                        </a>
+                       
+                    </li>
                     
                 </ul>
             </div>

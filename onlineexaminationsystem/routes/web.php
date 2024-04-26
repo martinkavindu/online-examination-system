@@ -94,6 +94,7 @@ Route::get('/questions/{exam_id}', [AdminController::class, 'Questions'])->name(
 Route::post('/store/qnaexam',[AdminController::class,'StoreQnaExam'])->name('storeqnaexam');
 Route::get('/all/questions/{id}', [AdminController::class, 'AllQuestions'])->name('allquestions');
 
+
 });
 
 Route::group(['middleware'=>['web','checkStudent']],function(){
@@ -101,6 +102,7 @@ Route::group(['middleware'=>['web','checkStudent']],function(){
 Route::get('/dashboard',[AuthController::class,'Dashboard'])->name('dashboard');
 Route::get('/exam/{id}',[ExamController::class,'ExamDashboard'])->name('examdashboard');
 Route::post('/exam_submit',[ExamController::class,'examSubmit'])->name('examsubmit');
+Route::get('/results', [ExamController::class, 'resultsDashboard'])->name('resultsdashboard');
 });
 
 
