@@ -29,7 +29,28 @@
 <tr>
     <td>{{x++}}</td>
 
-    <td></td>
+    <td>{{$attempt->exam->exam_name}}</td>
+
+    <td>
+    @if ($attempt->status == 0)
+    Not Declared
+    @else  
+    @if ($attempt->marks >= $attempt->exam->pass_marks)
+      <span style="color: green">Passed</span>  
+      @else
+      <span style="color:red">Failed</span>  
+    @endif
+
+    @endif
+    </td>
+
+    <td>
+   @if ($attempt->status == 0)
+    <span style="color: yellow">Pending</span>
+    @else 
+<a href="" data-id="{{$attempt->id}}" >Review Questions</a>
+    @endif
+    </td>
 </tr>
     
 @endforeach
