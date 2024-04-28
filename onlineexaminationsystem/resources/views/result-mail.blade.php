@@ -13,7 +13,7 @@
     so now you can check your Marks.
   </P>
   {{-- <h1> Total marks: <span style="color: green"> {{$data['marks']}}</span></h1> --}}
-<a href="{{$data[url]}}">click here</a>
+<a href="{{$data[url]}}">click here to check results</a>
 
   <p>Thank you</p>
 </body>
