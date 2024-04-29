@@ -48,7 +48,7 @@
    @if ($attempt->status == 0)
     <span style="color: yellow">Pending</span>
     @else 
-    <a href="#" class="reviewExam" data-id="{{$attempt->id}}" data-bs-toggle="modal" data-bs-target="#reviewqsn">Review Questions</a>
+    <a href="#" class="reviewqsn" data-id="{{$attempt->id}}" data-bs-toggle="modal" data-bs-target="#reviewqsn">Review Questions</a>
     @endif
     </td>
 </tr>
@@ -90,4 +90,5 @@
         
       </div>
     </div>
+
 @endsection

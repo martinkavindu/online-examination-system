@@ -245,3 +245,26 @@ if(hours == 0 && minutes == 0 && seconds == 0){
 }, 1000);
 
 </script> --}}
+
+
+<script>
+    $(document).ready(function(){
+        $('.reviewqsn').click(function(){
+
+    var id = $(this).attr('data-id');
+
+    $.ajax({
+
+        url:"{{route('studentqsn')}}",
+        type:"GET",
+        data:{attempt_id:id},
+
+        success:function(data){
+
+
+        }
+    })
+            
+        })
+    })
+    </script>
