@@ -261,7 +261,7 @@ if(hours == 0 && minutes == 0 && seconds == 0){
 
         success:function(data){
 
-
+           console.log(data)
         }
     })
             

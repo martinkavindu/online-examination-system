@@ -72,4 +72,13 @@ if($attemptCount >= $qnaExams[0]['attempt']){
     return view('student.result',compact('attempt'));
      
     }
+    public function studentQsn(Request $request){
+   try {
+   $attemptdata = ExamAnswer::where('attempt_id',$request->attempt_id)->with(['question','answers'])->get();
+return response()->json(['success'=>true,'data'=>$attemptdata]);
+   } catch (\Exception $e) {
+return response()->json(['success'=>false,'msg'=>$e->getMessage()]);
+   }
+
+    }
 }    
