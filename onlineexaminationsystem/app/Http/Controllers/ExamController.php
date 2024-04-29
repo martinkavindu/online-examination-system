@@ -68,7 +68,7 @@ if($attemptCount >= $qnaExams[0]['attempt']){
 
     public function resultsDashboard(){
 
-  $attempt = ExamAttempt::where('user_id',Auth()->user->id)->with('exam')->orderBy('updated_at')->get();
+  $attempt = ExamAttempt::where('user_id',Auth::user()->id)->with('exam')->orderBy('updated_at')->get();
     return view('student.result',compact('attempt'));
      
     }

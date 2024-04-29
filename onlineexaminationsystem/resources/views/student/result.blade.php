@@ -5,12 +5,12 @@
  <h2>Results</h2>
 
 
- <div class="container">
+ <div class="panel panel-default">
 
-<div class="table-responsive">
+<div class="panel-body">
 
 
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered" style="background-color: white">
 <thead>
     <tr>
     <th>S/N</th>
@@ -25,9 +25,9 @@
 @if (count($attempt)>0)
 @php $x = 1; @endphp
 
-@foreach ($attempt as $item)
+@foreach ($attempt as $attempt)
 <tr>
-    <td>{{x++}}</td>
+    <td>{{$x++}}</td>
 
     <td>{{$attempt->exam->exam_name}}</td>
 
@@ -48,7 +48,7 @@
    @if ($attempt->status == 0)
     <span style="color: yellow">Pending</span>
     @else 
-<a href="" data-id="{{$attempt->id}}" >Review Questions</a>
+    <a href="#" class="reviewExam" data-id="{{$attempt->id}}" data-bs-toggle="modal" data-bs-target="#reviewqsn">Review Questions</a>
     @endif
     </td>
 </tr>
@@ -65,4 +65,29 @@
 </div>
  </div>
 
+
+ 
+<div class="modal" id="reviewqsn">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Review your exam questions</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body review-qsn">
+          loading ..
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+        
+      </div>
+    </div>
 @endsection
