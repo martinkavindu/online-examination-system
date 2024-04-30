@@ -261,7 +261,44 @@ if(hours == 0 && minutes == 0 && seconds == 0){
 
         success:function(data){
 
-           console.log(data)
+            var html = ''
+ 
+            if (data.success == true) {
+            var data =  data.data;
+
+            if (data.length >0) {
+        for (let i = 0; i< data.length; i++) {
+            let answer = data[i]['answers']['answer'];
+            let is_correct = '<span style = "color:red;" class = "fa fa-close">  </span>';
+
+            if (data[i]['answers']['is_correct'] == 1) {
+             is_correct = '<span style = "color:green;" class = "fa fa-check">  </span>';
+   
+            }
+            html+=`
+            <div class="row">
+            <div class = "col-sm-12">
+            <h6> Q (`+(i+1)+`).`+data[i]['question']['question']+`</h6>
+            <p>Ans:- `+answer+`  `+is_correct+`</p>
+            </div>
+            </div>
+            
+            `;
+            
+        }
+               
+            } 
+         else
+            {
+         html+= '<h6>You didnt attempt any question</h6>'
+            }
+
+            }else{
+                html+='<p>Error occured  server side</p>'
+
+            }
+       $('.review-qsn').html(html);
+
         }
     })
             
