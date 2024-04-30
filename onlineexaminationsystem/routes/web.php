@@ -77,7 +77,7 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::get('/add/student',[AdminController::class,'Addstudent'])->name('addstudent');
     Route::post('/store/student',[AdminController::class,'StoreStudent'])->name('storestudent');
     Route::get('/delete/student/{id}',[AdminController::class,'DeleteStudent'])->name('deletestudent');
-
+    Route::get('/export/student',[AdminController::class,'exportStudent'])->name('exportstudent');
     //add marks
     Route::get('/admin/marks',[AdminController::class,'loadMarks'])->name('marks');
     Route::post('/update/marks',[AdminController::class,'Updatemarks'])->name('updatemarks');

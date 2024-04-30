@@ -11,7 +11,7 @@
 
         <div class="mt-5">
       
-            <table class="table table-bordered">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                     
@@ -19,6 +19,7 @@
                         
                         <th> Question id</th>
                         <th>Question</th>
+                        <th>Explanation</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +30,7 @@
                                 <td>{{ $exam->id }}</td>
                                 <td>{{ $question['id'] }}</td>
                                 <td>{{ $question['question'] }}</td>
-                        
+                                <td>{{ $question['explanation'] }}</td>
                             </tr>
                         @endforeach
                     </tbody>

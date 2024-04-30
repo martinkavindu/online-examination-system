@@ -11,6 +11,7 @@ use App\Models\ExamAttempt;
 use App\Models\QnaExam;
 use App\Models\User;
 use App\Imports\QnaImport;
+use App\Exports\studentExport;
 use App\Models\ExamAnswer;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
@@ -150,7 +151,8 @@ return view('exam.edit_exam',compact('exams'));
 
     public function StoreQns (Request $request){
         Question::insert([
-            'question'=> $request->question
+            'question'=> $request->question,
+            'explanation'=>$request->explanation
         ]);
         return redirect()->route('allqna')->with('message', 'Question added successfully');
     }
@@ -299,6 +301,11 @@ return view('exam.edit_exam',compact('exams'));
     
         }
 
+
+        public function exportStudent(){
+return excel::download(new studentExport,'students.xlsx');
+        
+        }
         // add questions to the exams   
         public function Questions(Request $request, $exam_id)
         {

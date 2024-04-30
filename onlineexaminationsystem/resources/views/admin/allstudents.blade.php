@@ -8,9 +8,11 @@
         <h2>Students</h2>
     </div>
     <div class="card-body">
-    <a href="{{route('addstudent')}}" class="btn btn-success btn-sm" title="Add New course">
+    <a href="{{route('addstudent')}}" class="btn btn-success btn-sm" title="Add New student">
             <i class="fa fa-plus" aria-hidden="true"></i> Add New Student
         </a>
+
+<a href="{{route('exportstudent')}}" class="btn btn-secondary btn-sm">Export student(excel)</a>
         <div class="mt-5">
       
         <table class="table table-bordered">
