@@ -7,7 +7,8 @@
     <h3 class="btn btn-success">Import Q&A</h3>
 </div>
 <div class="mb-3">
-    <input type="file" name="file" class="form-control " required>
+    <input type="file" name="file" class="form-control" accept="application/csv" required>
+
   </div>
 
 

@@ -233,7 +233,7 @@ return view('exam.edit_exam',compact('exams'));
             return view ('exam.importqna');
         }
     
-        public function Import (){
+        public function Import (Request $request){
             Excel::import(new QnaImport, $request->file('file'));
 
             return redirect()->route('allqna')->with('message','Questions and answers uploaded successfully');
@@ -302,8 +302,9 @@ return view('exam.edit_exam',compact('exams'));
         }
 
 
-        public function exportStudent(){
-return excel::download(new studentExport,'students.xlsx');
+       public function exportStudent(){
+
+     return excel::download(new studentExport,'students.xlsx');
         
         }
         // add questions to the exams   
