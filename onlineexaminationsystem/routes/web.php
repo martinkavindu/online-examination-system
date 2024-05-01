@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\studentController;
 
 
 /*
@@ -104,6 +105,7 @@ Route::get('/exam/{id}',[ExamController::class,'ExamDashboard'])->name('examdash
 Route::post('/exam_submit',[ExamController::class,'examSubmit'])->name('examsubmit');
 Route::get('/results', [ExamController::class, 'resultsDashboard'])->name('results');
 Route::get('/studentqsn', [ExamController::class, 'studentQsn'])->name('studentqsn');
+Route::get('/paidexams', [studentController::class, 'paidExam'])->name('paidexams');
 });
 
 

@@ -56,6 +56,14 @@
                     </li>
           
                     <li class="sidebar-item">
+                        <a href="{{'paidexams'}}" class="sidebar-link collapsed">
+                            <i class="fa fa-tasks" aria-hidden="true"></i>
+                     Paid Exams
+                        </a>
+                       
+                    </li>
+
+                    <li class="sidebar-item">
                         <a href="{{'results'}}" class="sidebar-link collapsed">
                             <i class="fa fa-list-alt" aria-hidden="true"></i>
                    Results
@@ -305,3 +313,18 @@ if(hours == 0 && minutes == 0 && seconds == 0){
         })
     })
     </script>
+        <script>
+            $(document).ready(function(){
+    
+            $('.paynow').click(function(){
+    
+        var price = $(this).attr('data-id');
+        var acc = $(this).attr('data-acc');
+
+        
+        $('.prices').val(price);
+        $('.account').val(acc);
+            })
+            })
+    
+            </script>
