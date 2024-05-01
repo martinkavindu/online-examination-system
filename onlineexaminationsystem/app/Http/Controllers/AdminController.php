@@ -129,7 +129,9 @@ return view('exam.edit_exam',compact('exams'));
             'subject_name' => $request->subject_name,
             'date' => $request->date,
             'time' => $request->time,
-            'attempt' => $request->attempt
+            'attempt' => $request->attempt,
+            'prices' =>$request->prices,
+            'plan'   =>$request->plan
         ]);
 
         return redirect()->route('allexam')->with('message','exam updated successfully');
