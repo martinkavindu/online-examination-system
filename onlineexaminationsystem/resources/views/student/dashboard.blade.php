@@ -1,7 +1,11 @@
 @extends('student.layout')
 
 @section('content')
-    <table class="table table-bordered bg-white">
+<div class="card">
+
+<div class="card-body">
+    <h3 class="card-title">Free Exams</h3>
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>SN</th>
@@ -39,5 +43,5 @@
             @endif
         </tbody>
     </table>
-
+</div>
 @endsection
