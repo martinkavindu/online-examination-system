@@ -15,7 +15,10 @@ class exam extends Model
 'subject_name',
 'date',
 'time',
-'attempt'
+'attempt',
+'prices',
+'plan',
+'pass_marks'
 
     ];
 

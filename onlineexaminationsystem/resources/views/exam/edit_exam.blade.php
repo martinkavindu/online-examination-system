@@ -27,6 +27,18 @@
 
     <input type="number" class="form-control " id="number" name="number" placeholder="Exam attempts" required value="{{$exams->attempt}}">
   </div>
+
+  <div class="mb-3">
+    <select type="text" class="form-control" value = "{{$exams->plan}}" name="plan"  required>
+      <option selected disabled> Select plan</option>
+      <option value="0">Free</option>
+      <option value="1">Paid</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <input type="text" name="prices" class="form-control" value="{{$exams->prices}}" placeholder="Enter prices in KES"/>
+  </div>
   <button type="submit" class="btn btn-primary">Save changes</button>
     </form>
 

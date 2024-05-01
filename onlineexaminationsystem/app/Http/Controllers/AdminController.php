@@ -104,7 +104,9 @@ class AdminController extends Controller
             'date' => $request->date,
             'time' => $request->time,
             'attempt' => $request->attempt,
-            'entrance_id' => $unique_id
+            'entrance_id' => $unique_id,
+            'prices'      =>$request->prices,
+            'plan'      =>$request->plan
         ]);
     
         return redirect()->route('allexam')->with('message', 'Exam added successfully');

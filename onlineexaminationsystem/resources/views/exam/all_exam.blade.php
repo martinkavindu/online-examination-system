@@ -15,13 +15,15 @@
       
         <table class="table table-bordered">
             <thead>
-              <tr>
+              <tr class="fs-6">
                 <th >No</th>
                 <th>Exam name</th>
                 <th> Subject name </th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Exam attempts</th>
+                <th>Exam plan</th>
+                <th>Exam price(KES)</th>
                 <th>Add questions</th>
                 <th>All questions</th>
                 <th>Edit</th>
@@ -40,7 +42,18 @@
                 <td>{{$item->date}}</td>
                 <td>{{$item->time}} Hrs</td>
                 <td>{{$item->attempt}} Times</td>
+                <td>
+                @if ($item->plan != 0)
+                   <span style="color:red">PAID</span> 
 
+                @else
+                <span style="color:green">FREE</span> 
+                
+                @endif
+                
+                </td>
+
+                <td>{{number_format($item->prices,2)}}</td>
                 <td><a href="{{ route('questions', ['exam_id' => $item->id]) }}">Add Questions</a></td>
                  <td><a href="{{ route('allquestions', $item->id) }}" data-id="{{ $item->id }}">Show Questions</a></td> 
 
