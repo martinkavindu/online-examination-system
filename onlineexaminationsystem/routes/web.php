@@ -106,6 +106,7 @@ Route::post('/exam_submit',[ExamController::class,'examSubmit'])->name('examsubm
 Route::get('/results', [ExamController::class, 'resultsDashboard'])->name('results');
 Route::get('/studentqsn', [ExamController::class, 'studentQsn'])->name('studentqsn');
 Route::get('/paidexams', [studentController::class, 'paidExam'])->name('paidexams');
+Route::post('/pay',[studentController::class,'Mpesapay'])->name('pay');
 });
 
 

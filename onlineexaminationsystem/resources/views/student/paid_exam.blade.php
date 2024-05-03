@@ -57,7 +57,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         
-   <form class="buyform">
+   <form class="buyform" method="POST" action="{{route('pay')}}">
     @csrf
         <div class="modal-body">
         
