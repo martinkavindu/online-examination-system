@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Exam;
+use App\Models\Payments;
 use Mail;
 use App\Models\PasswordReset;
 use Illuminate\Support\Facades\Hash;
