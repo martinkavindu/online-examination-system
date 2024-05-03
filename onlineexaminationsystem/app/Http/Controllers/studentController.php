@@ -54,14 +54,14 @@ class studentController extends Controller
         $access_token = $authResponseData['access_token'];
   $stkpush ="https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
   $response = Http::withHeaders([
-    'Authorization: Bearer ' . $access_token,
-    'Content-Type: application/json',
+    'Authorization' => 'Bearer ' . $access_token,
+    'Content-Type' => 'application/json',
   ])->post($stkpush, [
     "BusinessShortCode" => "174379",
     "Password" => "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTYwMjE2MTY1NjI3",    
     "Timestamp" => "20160216165627",    
     "TransactionType" => "CustomerPayBillOnline",    
-    "Amount" => $request->amount,    
+    "Amount" =>$request->amount,    
     "PartyA"=> $request->phone,    
     "PartyB" => "174379",    
     "PhoneNumber"=> $request->phone,    
@@ -69,8 +69,7 @@ class studentController extends Controller
     "AccountReference" => $request->account,    
     "TransactionDesc" => "Test"
 ]);
-return response()->json(['success'=>TRUE,'message'=>'exam marks updated successfully']);
- 
+return redirect()->route('paidexams')->with('message', 'Check your mpesa to enter pin to complete the transaction');
     }
     
 
