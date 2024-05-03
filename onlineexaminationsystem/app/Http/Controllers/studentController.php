@@ -52,11 +52,24 @@ class studentController extends Controller
     
         $authResponseData = $response->json();
         $access_token = $authResponseData['access_token'];
-    print_r($access_token);
-    exit();
-
-    
-    
+  $stkpush ="https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
+  $response = Http::withHeaders([
+    'Authorization: Bearer ' . $access_token,
+    'Content-Type: application/json',
+  ])->post($stkpush, [
+    "BusinessShortCode" => "174379",
+    "Password" => "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTYwMjE2MTY1NjI3",    
+    "Timestamp" => "20160216165627",    
+    "TransactionType" => "CustomerPayBillOnline",    
+    "Amount" => $request->amount,    
+    "PartyA"=> $request->phone,    
+    "PartyB" => "174379",    
+    "PhoneNumber"=> $request->phone,    
+    "CallBackURL" => "https://mydomain.com/pat",    
+    "AccountReference" => $request->account,    
+    "TransactionDesc" => "Test"
+]);
+return response()->json(['success'=>TRUE,'message'=>'exam marks updated successfully']);
  
     }
     
