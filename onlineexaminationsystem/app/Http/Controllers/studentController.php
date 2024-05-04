@@ -19,7 +19,7 @@ use Illuminate\Support\Carbon;
 class studentController extends Controller
 {
     public function paidExam(){
-        $exams = Exam::where('plan',1)->with('subjects')->orderBy('date','DESC')->get();
+        $exams = Exam::where('plan',1)->with(['subjects','payments'])->orderBy('date','DESC')->get();
 
         return view('student.paid_exam',['exams'=>$exams]);
         

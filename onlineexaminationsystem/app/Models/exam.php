@@ -50,4 +50,9 @@ return  $value;
 public function getAttemptCounterAttribute(){
     return $this->count;
 }
+
+public function  payments(){
+
+return $this->hasMany(Payments::class,'exam_id','id');
+}
 }

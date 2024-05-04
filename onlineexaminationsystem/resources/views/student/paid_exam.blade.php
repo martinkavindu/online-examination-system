@@ -34,8 +34,15 @@
                         <td>{{$exam->attempt}} times</td>
                         <td> {{$exam->attempt_counter}}  times</td>
                         <td>
-                        <a href="#" class="btn btn-success btn-sm paynow" id="" data-id= "{{$exam->prices}}" data-acc="{{$exam->entrance_id}}" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-money"></i> Buy Now </a>
-                         {{-- <a href="#" data-code="{{$exam->id}}" class="copy"><i class="fa fa-copy"></i></a> --}}
+
+                            @if (count($exam->payments) > 0)
+                         
+                        <a href="#" data-code="{{$exam->id}}" class="copy"><i class="fa fa-copy"></i></a>   
+                            @else
+                            <a href="#" class="btn btn-success btn-sm paynow" id="" data-id= "{{$exam->prices}}" data-acc="{{$exam->entrance_id}}" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-money"></i> Buy Now </a>
+                           
+                            @endif
+                        
                         </td>
                     </tr>
                 @endforeach
