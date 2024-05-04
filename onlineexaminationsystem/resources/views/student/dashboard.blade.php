@@ -13,8 +13,9 @@
                 <th>Subject Name</th>
                 <th>Date</th>
                 <th>Time</th>
-                <th>Total Attempt</th>
-                <th>available Attempt</th>
+                <th>Maximum Attempts</th>
+                <th>Completed Attempts</th>
+                <th>Remaining  Attempts</th>
                 <th>Copy Exam link</th>
             </tr>
         </thead>
@@ -33,6 +34,7 @@
                         <td>{{$exam->time}} Hrs</td>
                         <td>{{$exam->attempt}}</td>
                         <td> {{$exam->attempt_counter}}</td>
+                        <td> {{$exam->attempt - $exam->attempt_counter }}</td>
                         <td><a href="#" data-code="{{$exam->id}}" class="copy"><i class="fa fa-copy"></i></a></td>
                     </tr>
                 @endforeach

@@ -7,14 +7,15 @@
     <h3 class="card-title">Paid Exams</h3>
     <table class="table table-bordered table-striped table-sm">
         <thead>
-            <tr>
+            <tr  class="fs-6" style="font-size: 12px !important">
                 <th>SN</th>
                 <th>Exam Name</th>
                 <th>Subject Name</th>
                 <th>Date</th>
                 <th>Time</th>
-                <th>Total Attempt</th>
-                <th>available Attempt</th>
+                <th>Maximum attempts</th>
+                <th>Completed attempts</th>
+                <th>Remaining Attempts</th>
                 <th>Copy Exam link</th>
             </tr>
         </thead>
@@ -24,7 +25,7 @@
                     $count = 1;
                 @endphp
                 @foreach ($exams as $exam)
-                    <tr>
+                    <tr style="font-size: 12px !important">
                         <td style="display: none;"> {{$exam->id}} </td>
                         <td>{{$count++}}</td>
                         <td>{{$exam->exam_name}}</td>
@@ -33,6 +34,7 @@
                         <td>{{$exam->time}} Hrs</td>
                         <td>{{$exam->attempt}} times</td>
                         <td> {{$exam->attempt_counter}}  times</td>
+                        <td>{{$exam->attempt - $exam->attempt_counter}} times</td>
                         <td>
 
                             @if (count($exam->payments) > 0)
