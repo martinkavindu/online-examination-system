@@ -107,6 +107,7 @@ Route::get('/results', [ExamController::class, 'resultsDashboard'])->name('resul
 Route::get('/studentqsn', [ExamController::class, 'studentQsn'])->name('studentqsn');
 Route::get('/paidexams', [studentController::class, 'paidExam'])->name('paidexams');
 Route::post('/pay',[studentController::class,'Mpesapay'])->name('pay');
+Route::post('/mpesa/callback', [studentController::class, 'callback']);
 });
 
 

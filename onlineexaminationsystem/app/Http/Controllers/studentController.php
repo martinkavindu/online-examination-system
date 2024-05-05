@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Exam;
 use App\Models\Payments;
+use Illuminate\Support\Facades\Log;
 use Mail;
+use Illuminate\Support\Facades\DB;
 use App\Models\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -62,11 +64,11 @@ class studentController extends Controller
     "Password" => "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTYwMjE2MTY1NjI3",    
     "Timestamp" => "20160216165627",    
     "TransactionType" => "CustomerPayBillOnline",    
-    "Amount" =>$request->amount,    
+    "Amount" =>"1",    
     "PartyA"=> $request->phone,    
     "PartyB" => "174379",    
     "PhoneNumber"=> $request->phone,    
-    "CallBackURL" => "https://mydomain.com/pat",    
+    "CallBackURL" => "https://9d9d-102-216-85-20.ngrok-free.app/mpesa/callback",    
     "AccountReference" => $request->account,    
     "TransactionDesc" => "Test"
 ]);
@@ -74,5 +76,19 @@ return redirect()->route('paidexams')->with('message', 'Check your mpesa to ente
     }
     
 
+    public function callback(Request $request)
+    {
+       
+        $data = $request->all();
+        Log::info('Callback data received:', $data);
+ 
+    DB::table('mpesadata')->insert([
+    'transaction_id' => $data['TransID'],
+    'amount'     => $data['TransAmount']
+    ]);
+
+       
+        return response()->json(['success' => true]);
+    }
     
 }
