@@ -96,5 +96,55 @@ class studentController extends Controller
        
         return response()->json(['success' => true]);
     }
+
+    public function registerUrl(Request $request)
+{
+    $consumerKey = 'qlmgrxQ65aK2GJ9AqXtYW6EOFfGpn1MfPwKu0IlUSQtelM5d';
+    $consumerSecret = '1AhL9GA4i1sYlHo4xB26RMePFw3I4GiJClAGW2JEycfvY0J1jV3LhudTrl9J46Vs';
+
+    $authUrl = "https://sandbox.safaricom.co.ke/oauth/v1/generate";
+
+    $response = Http::withHeaders([
+        'Authorization' => 'Basic ' . base64_encode($consumerKey . ':' . $consumerSecret),
+        'Content-Type' => 'application/json',
+    ])->get($authUrl, [
+        'grant_type' => 'client_credentials',
+    ]);
+
+    $response_body = $response->getBody()->getContents();
+
+    if ($response->failed()) {
+        return [
+            'success' => false,
+            'message' => 'Error: ' . $response->body(),
+        ];
+    }
+
+    $authResponseData = $response->json();
+    $token = $authResponseData['access_token'];
+
+    $regUrl = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl";
+    $siteBaseUrl = 'https://worthy-lamprey-adapting.ngrok-free.app'; 
+    $shortcode = $request->shortcode; 
+
+    $headers = [
+        'Authorization' => 'Bearer ' . $token,
+        'Content-Type' => 'application/json',
+    ];
+
+    $data = [
+        'ShortCode' => $shortcode,
+        'ResponseType' => 'Complete',
+        'ConfirmationURL' => $siteBaseUrl . '/transactions/confirmation',
+        'ValidationURL' => $siteBaseUrl . '/transactions/validation',
+    ];
+
+    try {
+        $response = Http::withHeaders($headers)->post($regUrl, $data);
+        return $response->json(); 
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
     
 }
