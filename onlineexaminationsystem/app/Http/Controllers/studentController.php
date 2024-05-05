@@ -74,7 +74,7 @@ class studentController extends Controller
             "PartyB" => "174379",
             "PhoneNumber"=> "254700729827",
             "CallBackURL" => "https://worthy-lamprey-adapting.ngrok-free.app/mpesa/callback",
-            "AccountReference" => "Test",
+            "AccountReference" =>$request->account,
             "TransactionDesc" => "Test"
         ]);
     
@@ -145,6 +145,20 @@ class studentController extends Controller
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
+}
+
+public function confirmation(Request $request)
+{
+    $confirmationData = $request->all();
+
+    $transID = $confirmationData['TransID'];
+    $Transamount = $confirmationData['TransAmount'];
+    $TransTime = $confirmationData['TransTime'];
+
+
+   
+
+    return response()->json(['TransID' => $transID]); 
 }
     
 }

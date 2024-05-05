@@ -109,6 +109,7 @@ Route::get('/paidexams', [studentController::class, 'paidExam'])->name('paidexam
 Route::post('/pay',[studentController::class,'Mpesapay'])->name('pay');
 Route::post('/mpesa/callback', [studentController::class, 'callback']);
 Route::post('/registerurl', [studentController::class, 'registerUrl'])->name('registerurl');
+Route::post('/confirmation', [studentController::class, 'confirmation'])->name('confirmation');
 });
 
 
