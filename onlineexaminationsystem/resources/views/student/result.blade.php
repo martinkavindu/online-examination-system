@@ -4,7 +4,7 @@
 
  <h2>Results</h2>
 
-
+<a href="{{route('printresults')}}" class="btn btn-success btn-sm"> Print</a>
  <div class="panel panel-default">
 
 <div class="panel-body">

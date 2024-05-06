@@ -7,6 +7,7 @@ use App\Models\ExamAttempt;
 use App\Models\ExamAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ExamController extends Controller
 {
@@ -79,8 +80,26 @@ return response()->json(['success'=>true,'data'=>$attemptdata]);
    } catch (\Exception $e) {
 return response()->json(['success'=>false,'msg'=>$e->getMessage()]);
    }
+ 
+      
+
+    }
+    public function printResults(){
+
+        
+  $attempt = ExamAttempt::where('user_id',Auth::user()->id)->with('exam')->orderBy('updated_at')->get();
 
 
+  $data = [
+    'title' => 'Exam Results',
+    'date' => date('m/d/Y'),
+    'attempt' => $attempt
+    ];
+
+    $pdf = PDF::loadView('pdf.examresults', $data);
+    return $pdf->download('results.pdf');
+
+    
     }
 
 

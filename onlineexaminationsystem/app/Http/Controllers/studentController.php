@@ -9,6 +9,7 @@ use App\Models\Exam;
 use App\Models\Payments;
 use Illuminate\Support\Facades\Log;
 use Mail;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Models\PasswordReset;
 use Illuminate\Support\Facades\Hash;
@@ -160,5 +161,6 @@ public function confirmation(Request $request)
 
     return response()->json(['TransID' => $transID]); 
 }
-    
+
+ 
 }
