@@ -4,7 +4,9 @@
 
  <h2>Results</h2>
 
-<a href="{{route('printresults')}}" class="btn btn-success btn-sm"> Print</a>
+<a href="{{route('printresults')}}" class="btn btn-success btn-sm mb-3"> Print</a>
+
+<a href="{{route('sendviaemail')}}" class="btn btn-success btn-sm mb-3">Send to email</a>
  <div class="panel panel-default">
 
 <div class="panel-body">

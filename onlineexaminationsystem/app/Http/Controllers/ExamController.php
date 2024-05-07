@@ -127,6 +127,8 @@ return response()->json(['success'=>false,'msg'=>$e->getMessage()]);
       
           unlink($pdfPath);
 
+          return redirect()->back()->with('message','email send successfully');
+
     }
 
 
