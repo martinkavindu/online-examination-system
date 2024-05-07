@@ -16,6 +16,16 @@
           width: 100%;
           border: 1px solid #ddd;
         }
+        .footer{
+
+            bottom: 0 !important;
+            position: fixed;
+            padding: 10px;
+            background: green;
+            width: 100% !important;
+            text-align: center;
+            color: aliceblue;
+        }
         
         th, td {
           text-align: left;
@@ -92,6 +102,13 @@
      </div>
     
 
+</div>
+
+<div>
+    {{-- <img src="{{asset('upload/stamp.png')}}" alt="" style="width:100px,height:100px"/> --}}
+</div>
+<div class="footer">
+welcome all
 </div>
 </body>
 </html>
