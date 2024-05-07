@@ -8,6 +8,7 @@ use App\Models\ExamAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Mail;
 
 class ExamController extends Controller
 {
@@ -101,6 +102,33 @@ return response()->json(['success'=>false,'msg'=>$e->getMessage()]);
 
     
     }
+
+    public function Sendviaemail(){
+        $attempt = ExamAttempt::where('user_id',Auth::user()->id)->with('exam')->orderBy('updated_at')->get();
+
+
+        $data = [
+          'title' => 'Exam Results',
+          'date' => date('d/m/Y'),
+          'attempt' => $attempt
+          ];
+      
+          $pdf = PDF::loadView('pdf.examresults', $data);
+          $pdfPath = storage_path('app/exam_results.pdf'); 
+
+          
+          $pdf->save($pdfPath);
+      
+          Mail::send([], [], function ($message) use ($pdfPath) {
+              $message->to(Auth::user()->email)
+                      ->subject('Exam Results')
+                      ->attach($pdfPath);
+          });
+      
+          unlink($pdfPath);
+
+    }
+
 
 
 }    

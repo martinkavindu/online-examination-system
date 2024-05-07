@@ -111,6 +111,7 @@ Route::post('/mpesa/callback', [studentController::class, 'callback']);
 Route::post('/registerurl', [studentController::class, 'registerUrl'])->name('registerurl');
 Route::post('/confirmation', [studentController::class, 'confirmation'])->name('confirmation');
 Route::get('/printresults',[ExamController::class,'printResults'])->name('printresults');
+Route::get('/sendviaemail',[ExamController::class,'Sendviaemail'])->name('sendviaemail');
 });
 
 
