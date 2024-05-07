@@ -92,7 +92,7 @@ return response()->json(['success'=>false,'msg'=>$e->getMessage()]);
 
   $data = [
     'title' => 'Exam Results',
-    'date' => date('m/d/Y'),
+    'date' => date('d/m/Y'),
     'attempt' => $attempt
     ];
 
