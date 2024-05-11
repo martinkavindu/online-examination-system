@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\exam;
-use App\Models\QnaExam;
-use App\Models\ExamAttempt;
 use App\Models\ExamAnswer;
+use App\Models\ExamAttempt;
+use App\Models\QnaExam;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Mail;
 
 class ExamController extends Controller
@@ -18,20 +19,18 @@ class ExamController extends Controller
         $qnaExams = exam::where('id', $id)->with('getQnaExam')->get();
 
         if (count($qnaExams) > 0) {
-$attemptCount = ExamAttempt::where(['exam_id'=>$qnaExams[0]['id'],'user_id'=>auth()->user()->id])->count();
-if($attemptCount >= $qnaExams[0]['attempt']){
-    
-    return view('student.examDashboard', ['success' => false, 'message' => 'Your exam attempt  has been completed ,wait for results ', 'qnaExams' => $qnaExams]);
-}
-            
-            else if ($qnaExams[0]['date'] == date('Y-m-d')) {
-                
+            $attemptCount = ExamAttempt::where(['exam_id' => $qnaExams[0]['id'], 'user_id' => auth()->user()->id])->count();
+            if ($attemptCount >= $qnaExams[0]['attempt']) {
+
+                return view('student.examDashboard', ['success' => false, 'message' => 'Your exam attempt  has been completed ,wait for results ', 'qnaExams' => $qnaExams]);
+            } else if ($qnaExams[0]['date'] == date('Y-m-d')) {
+
                 if (count($qnaExams[0]->getQnaExam) > 0) {
 
                     $exam = QnaExam::findOrFail($id);
                     $questions = $exam->questions()->inRandomOrder()->with('answer')->get();
-            
-                    return view('student.examDashboard', ['success' => true, 'qnaExams' => $qnaExams, 'questions' => $questions, 'time' => isset($time) ? $time : null, 'message' => ''. $qnaExams[0]['exam_name']]);
+
+                    return view('student.examDashboard', ['success' => true, 'qnaExams' => $qnaExams, 'questions' => $questions, 'time' => isset($time) ? $time : null, 'message' => '' . $qnaExams[0]['exam_name']]);
                 } else {
                     return view('student.examDashboard', ['success' => false, 'message' => 'This exam is not available ', 'qnaExams' => $qnaExams]);
                 }
@@ -44,93 +43,89 @@ if($attemptCount >= $qnaExams[0]['attempt']){
             return view('404');
         }
     }
-      
-    public function examSubmit(Request $request){
 
-     $attempt_id = ExamAttempt::insertGetId(
+    public function examSubmit(Request $request)
+    {
+
+        $attempt_id = ExamAttempt::insertGetId(
             [
-                'exam_id' =>$request->exam_id,
-                'user_id' =>Auth::user()->id
+                'exam_id' => $request->exam_id,
+                'user_id' => Auth::user()->id,
             ]
-            );
-            $qcount = count($request->q);
-            if($qcount >0){
-         
-                for($i=0; $i<$qcount;$i++){
+        );
+        $qcount = count($request->q);
+        if ($qcount > 0) {
 
-                    ExamAnswer::insert([
-                        'attempt_id'=>$attempt_id,
-                        'question_id'=>$request->q[$i],
-                        'answer_id' => request()->input('ans_'.($i+1))
-                    ]);
-                }
+            for ($i = 0; $i < $qcount; $i++) {
+
+                ExamAnswer::insert([
+                    'attempt_id' => $attempt_id,
+                    'question_id' => $request->q[$i],
+                    'answer_id' => request()->input('ans_' . ($i + 1)),
+                ]);
             }
-            return view('student.thank_you');
+        }
+        return view('student.thank_you');
     }
 
-    public function resultsDashboard(){
+    public function resultsDashboard()
+    {
 
-  $attempt = ExamAttempt::where('user_id',Auth::user()->id)->with('exam')->orderBy('updated_at')->get();
-    return view('student.result',compact('attempt'));
-     
-    }
-    public function studentQsn(Request $request){
-   try {
-   $attemptdata = ExamAnswer::where('attempt_id',$request->attempt_id)->with(['question','answers'])->get();
-return response()->json(['success'=>true,'data'=>$attemptdata]);
-   } catch (\Exception $e) {
-return response()->json(['success'=>false,'msg'=>$e->getMessage()]);
-   }
- 
-      
+        $attempt = ExamAttempt::where('user_id', Auth::user()->id)->with('exam')->orderBy('updated_at')->get();
+        return view('student.result', compact('attempt'));
 
     }
-    public function printResults(){
+    public function studentQsn(Request $request)
+    {
+        try {
+            $attemptdata = ExamAnswer::where('attempt_id', $request->attempt_id)->with(['question', 'answers'])->get();
+            return response()->json(['success' => true, 'data' => $attemptdata]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'msg' => $e->getMessage()]);
+        }
 
-        
-  $attempt = ExamAttempt::where('user_id',Auth::user()->id)->with('exam')->orderBy('updated_at')->get();
-
-
-  $data = [
-    'title' => 'Exam Results',
-    'date' => date('d/m/Y'),
-    'attempt' => $attempt
-    ];
-
-    $pdf = PDF::loadView('pdf.examresults', $data);
-    return $pdf->download('results.pdf');
-
-    
     }
+    public function printResults()
+    {
 
-    public function Sendviaemail(){
-        $attempt = ExamAttempt::where('user_id',Auth::user()->id)->with('exam')->orderBy('updated_at')->get();
-
+        $attempt = ExamAttempt::where('user_id', Auth::user()->id)->with('exam')->orderBy('updated_at')->get();
 
         $data = [
-          'title' => 'Exam Results',
-          'date' => date('d/m/Y'),
-          'attempt' => $attempt
-          ];
-      
-          $pdf = PDF::loadView('pdf.examresults', $data);
-          $pdfPath = storage_path('app/exam_results.pdf'); 
+            'title' => 'Exam Results',
+            'date' => date('d/m/Y'),
+            'attempt' => $attempt,
+        ];
 
-          
-          $pdf->save($pdfPath);
-      
-          Mail::send([], [], function ($message) use ($pdfPath) {
-              $message->to(Auth::user()->email)
-                      ->subject('Exam Results')
-                      ->attach($pdfPath);
-          });
-      
-          unlink($pdfPath);
-
-          return redirect()->back()->with('message','email send successfully');
+        $pdf = PDF::loadView('pdf.examresults', $data);
+        return $pdf->download('results.pdf');
 
     }
 
+    public function Sendviaemail()
+    {
+        $attempt = ExamAttempt::where('user_id', Auth::user()->id)->with('exam')->orderBy('updated_at')->get();
 
+        $data = [
+            'title' => 'Exam Results',
+            'date' => date('d/m/Y'),
+            'attempt' => $attempt,
+        ];
 
-}    
+        $pdf = PDF::loadView('pdf.examresults', $data);
+        $pdfPath = storage_path('app/exam_results.pdf');
+
+        $pdf->save($pdfPath);
+
+        Mail::send([], [], function ($message) use ($pdfPath) {
+            $message->to(Auth::user()->email)
+                ->subject('Exam Results')
+                ->attach($pdfPath);
+        });
+
+        unlink($pdfPath);
+
+        return redirect()->back()->with('message', 'email send successfully');
+
+    }
+
+}
